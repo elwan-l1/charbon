@@ -9,12 +9,22 @@
 /* Begin PBXBuildFile section */
 		17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D84A140829CF1C0DF43000 /* StatusItemController.swift */; };
 		219EE99350DC94CD71F00915 /* CharbonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE693349843DED66001C695B /* CharbonTests.swift */; };
+		30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42111D3EF2798C4905FDF31A /* Keychain.swift */; };
+		341C336985C298123C242E56 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170D9E16AD9E9938A4A73832 /* SessionController.swift */; };
 		424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */; };
+		4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815591BAE39D29F360AFB0C5 /* CookieVault.swift */; };
 		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
+		63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */; };
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
+		94700C687F62082B25FF501C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */; };
+		A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603ED23351044E00E26DB7C3 /* LoginWindowController.swift */; };
+		A6AE33DAEB1C43CF151818D9 /* CharbonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FC43EA708035814B15B17B /* CharbonError.swift */; };
 		ABBC38BB90AFEE984BA9362B /* libCharbonCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD05A373CF503617D5E887D4 /* libCharbonCore.a */; };
+		AD28C0604AF6B8A8AB257F63 /* CharbonEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */; };
+		C3C845C5DF5D2B62163998E9 /* SessionProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */; };
 		C4B1C3E68586ED63C7B2A787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */; };
+		CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C41E7B1204169906750519 /* SessionStatus.swift */; };
 		ED4532CD4678F86AE15DE0FA /* libCharbonCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD05A373CF503617D5E887D4 /* libCharbonCore.a */; };
 		F419F9A5A3043DE800C654EC /* CharbonAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */; };
 /* End PBXBuildFile section */
@@ -44,11 +54,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		170D9E16AD9E9938A4A73832 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
+		42111D3EF2798C4905FDF31A /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E58E9F11ABB976E33BCCDD3 /* Charbon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charbon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		603ED23351044E00E26DB7C3 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		62D84A140829CF1C0DF43000 /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonEnvironment.swift; sourceTree = "<group>"; };
+		6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRenewer.swift; sourceTree = "<group>"; };
 		7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonApplication.swift; sourceTree = "<group>"; };
+		815591BAE39D29F360AFB0C5 /* CookieVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieVault.swift; sourceTree = "<group>"; };
+		8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProbe.swift; sourceTree = "<group>"; };
 		9510DA15A90E9D59245B6632 /* Charbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charbon.swift; sourceTree = "<group>"; };
+		C2C41E7B1204169906750519 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
 		C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD05A373CF503617D5E887D4 /* libCharbonCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCharbonCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +75,7 @@
 		DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = CharbonAppIcon.icon; sourceTree = "<group>"; };
 		E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE693349843DED66001C695B /* CharbonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonTests.swift; sourceTree = "<group>"; };
+		F9FC43EA708035814B15B17B /* CharbonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +141,13 @@
 			children = (
 				C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */,
 				7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */,
+				815591BAE39D29F360AFB0C5 /* CookieVault.swift */,
+				42111D3EF2798C4905FDF31A /* Keychain.swift */,
+				603ED23351044E00E26DB7C3 /* LoginWindowController.swift */,
+				6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */,
+				170D9E16AD9E9938A4A73832 /* SessionController.swift */,
+				8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */,
+				733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */,
 				62D84A140829CF1C0DF43000 /* StatusItemController.swift */,
 			);
 			path = Charbon;
@@ -130,6 +157,9 @@
 			isa = PBXGroup;
 			children = (
 				9510DA15A90E9D59245B6632 /* Charbon.swift */,
+				690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */,
+				F9FC43EA708035814B15B17B /* CharbonError.swift */,
+				C2C41E7B1204169906750519 /* SessionStatus.swift */,
 			);
 			path = CharbonCore;
 			sourceTree = "<group>";
@@ -301,6 +331,13 @@
 			files = (
 				424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */,
 				7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */,
+				4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */,
+				30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */,
+				A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */,
+				94700C687F62082B25FF501C /* MainMenu.swift in Sources */,
+				341C336985C298123C242E56 /* SessionController.swift in Sources */,
+				C3C845C5DF5D2B62163998E9 /* SessionProbe.swift in Sources */,
+				63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */,
 				17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +355,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */,
+				AD28C0604AF6B8A8AB257F63 /* CharbonEnvironment.swift in Sources */,
+				A6AE33DAEB1C43CF151818D9 /* CharbonError.swift in Sources */,
+				CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +543,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "-package-name charbon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -592,6 +633,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-package-name charbon";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;

@@ -5,12 +5,14 @@ import OSLog
 final class AppDelegate: NSObject, NSApplicationDelegate {
   private static let logger = Logger(subsystem: "ch.codevs.charbon", category: "application")
 
+  private let session = SessionController()
   private var statusItemController: StatusItemController?
 
   func applicationDidFinishLaunching(_ notification: Notification) {
-    // A menu bar app: no Dock icon and no main window.
     NSApp.setActivationPolicy(.accessory)
-    statusItemController = StatusItemController()
+    MainMenu.install()
+    statusItemController = StatusItemController(session: session)
+    session.start()
     Self.logger.info("Charbon is ready")
   }
 }

@@ -36,6 +36,7 @@ settings:
     SWIFT_STRICT_CONCURRENCY: complete
     SWIFT_TREAT_WARNINGS_AS_ERRORS: YES
     SWIFT_VERSION: "6.0"
+    OTHER_SWIFT_FLAGS: "-package-name charbon"
 
 targets:
   CharbonCore:
