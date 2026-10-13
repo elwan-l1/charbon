@@ -1,1 +1,7 @@
-# charbon
+<p align="center">
+  <img src="docs/assets/readme/charbon.svg" width="140" alt="Charbon">
+</p>
+
+<h1 align="center">Charbon</h1>
+
+<p align="center">A simple app for clocking in and out that simplifies the use of timbrage.hefr.ch and saves you time.</p>
