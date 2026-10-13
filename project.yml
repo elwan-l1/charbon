@@ -1,0 +1,133 @@
+name: Charbon
+options:
+  bundleIdPrefix: ch.codevs
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: en
+  xcodeVersion: "27.0"
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
+    CLANG_ANALYZER_NONNULL: YES
+    CLANG_ENABLE_MODULES: YES
+    CLANG_ENABLE_OBJC_ARC: YES
+    CLANG_WARN_BOOL_CONVERSION: YES
+    CLANG_WARN_CONSTANT_CONVERSION: YES
+    CLANG_WARN_EMPTY_BODY: YES
+    CLANG_WARN_ENUM_CONVERSION: YES
+    CLANG_WARN_INFINITE_RECURSION: YES
+    CLANG_WARN_INT_CONVERSION: YES
+    CLANG_WARN_UNREACHABLE_CODE: YES
+    COPY_PHASE_STRIP: NO
+    DEAD_CODE_STRIPPING: YES
+    ENABLE_STRICT_OBJC_MSGSEND: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    GCC_NO_COMMON_BLOCKS: YES
+    GCC_TREAT_WARNINGS_AS_ERRORS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    SWIFT_COMPILATION_MODE: wholemodule
+    SWIFT_STRICT_CONCURRENCY: complete
+    SWIFT_TREAT_WARNINGS_AS_ERRORS: YES
+    SWIFT_VERSION: "6.0"
+
+targets:
+  CharbonCore:
+    type: library.static
+    platform: macOS
+    sources:
+      - Sources/CharbonCore
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon.core
+        PRODUCT_MODULE_NAME: CharbonCore
+        SKIP_INSTALL: YES
+        SWIFT_INSTALL_OBJC_HEADER: NO
+
+  Charbon:
+    type: application
+    platform: macOS
+    sources:
+      - Sources/Charbon
+      - path: Resources/Assets.xcassets
+        buildPhase: resources
+      - path: Resources/Brand/CharbonAppIcon.icon
+        buildPhase: resources
+    dependencies:
+      - target: CharbonCore
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Charbon
+        CFBundleName: Charbon
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        LSApplicationCategoryType: public.app-category.productivity
+        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
+        LSUIElement: true
+        NSHumanReadableCopyright: Copyright © 2026 Elwan Mayencourt. All rights reserved.
+    settings:
+      base:
+        ASSETCATALOG_COMPILER_APPICON_NAME: CharbonAppIcon
+        CODE_SIGN_STYLE: Automatic
+        CURRENT_PROJECT_VERSION: 1
+        DEVELOPMENT_TEAM: K85JVL5Z98
+        ENABLE_HARDENED_RUNTIME: YES
+        GENERATE_INFOPLIST_FILE: NO
+        MARKETING_VERSION: 0.1.0
+        PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon
+        PRODUCT_MODULE_NAME: Charbon
+        PRODUCT_NAME: Charbon
+
+  CharbonTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests/CharbonTests
+    dependencies:
+      - target: CharbonCore
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon.tests
+        PRODUCT_MODULE_NAME: CharbonTests
+        SWIFT_COMPILATION_MODE: singlefile
+
+  CharbonAppTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - Tests/CharbonAppTests
+    dependencies:
+      - target: Charbon
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon.app-tests
+        PRODUCT_MODULE_NAME: CharbonAppTests
+        SWIFT_COMPILATION_MODE: singlefile
+
+schemes:
+  Charbon:
+    build:
+      targets:
+        Charbon: all
+        CharbonCore: all
+        CharbonAppTests: [test]
+        CharbonTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      gatherCoverageData: true
+      targets:
+        - CharbonAppTests
+        - CharbonTests
+    archive:
+      config: Release

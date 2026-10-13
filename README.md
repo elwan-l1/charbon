@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/readme/charbon.svg" width="140" alt="Charbon">
+  <img src="docs/assets/readme/charbon.png" width="140" alt="Charbon">
 </p>
 
 <h1 align="center">Charbon</h1>

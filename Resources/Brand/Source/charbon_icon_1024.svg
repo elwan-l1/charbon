@@ -1,0 +1,13 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M375.375 250.438L638.375 234L802.75 414.812L737 710.688L506.875 809.312L276.75 710.688L211 447.688L375.375 250.438Z" stroke="black" stroke-width="60" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="501" y1="675" x2="501" y2="745" stroke="black" stroke-width="30"/>
+<line x1="501" y1="296" x2="501" y2="366" stroke="black" stroke-width="30"/>
+<line x1="649" y1="530" x2="719" y2="530" stroke="black" stroke-width="30"/>
+<line x1="289" y1="530" x2="359" y2="530" stroke="black" stroke-width="30"/>
+<path d="M493.501 545L637.001 450.499" stroke="black" stroke-width="50"/>
+<path d="M523 546.5L422.501 466" stroke="black" stroke-width="50"/>
+<line x1="636.393" y1="398.393" x2="671.749" y2="363.038" stroke="black" stroke-width="30"/>
+<line x1="360.393" y1="673.749" x2="395.749" y2="638.394" stroke="black" stroke-width="30"/>
+<line y1="-15" x2="50" y2="-15" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 642.355 675.355)" stroke="black" stroke-width="30"/>
+<line y1="-15" x2="50" y2="-15" transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 380.355 430.355)" stroke="black" stroke-width="30"/>
+</svg>

@@ -1,0 +1,706 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D84A140829CF1C0DF43000 /* StatusItemController.swift */; };
+		219EE99350DC94CD71F00915 /* CharbonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE693349843DED66001C695B /* CharbonTests.swift */; };
+		424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */; };
+		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
+		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
+		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
+		ABBC38BB90AFEE984BA9362B /* libCharbonCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD05A373CF503617D5E887D4 /* libCharbonCore.a */; };
+		C4B1C3E68586ED63C7B2A787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */; };
+		ED4532CD4678F86AE15DE0FA /* libCharbonCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD05A373CF503617D5E887D4 /* libCharbonCore.a */; };
+		F419F9A5A3043DE800C654EC /* CharbonAppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A87E9C03F55B3F9A653EA95E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079DF6C6C8BD68ACA6547D43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA5165F33E934CEA45ACA132;
+			remoteInfo = Charbon;
+		};
+		C29B858099835D89A9659CCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079DF6C6C8BD68ACA6547D43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2F75A3F046757A5C4B21B3F;
+			remoteInfo = CharbonCore;
+		};
+		FFCC3DD3A7D748C6245B6FD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 079DF6C6C8BD68ACA6547D43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C2F75A3F046757A5C4B21B3F;
+			remoteInfo = CharbonCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E58E9F11ABB976E33BCCDD3 /* Charbon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charbon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D84A140829CF1C0DF43000 /* StatusItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemController.swift; sourceTree = "<group>"; };
+		7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonApplication.swift; sourceTree = "<group>"; };
+		9510DA15A90E9D59245B6632 /* Charbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charbon.swift; sourceTree = "<group>"; };
+		C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DD05A373CF503617D5E887D4 /* libCharbonCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCharbonCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemControllerTests.swift; sourceTree = "<group>"; };
+		DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = CharbonAppIcon.icon; sourceTree = "<group>"; };
+		E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE693349843DED66001C695B /* CharbonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0208F7305F0E5561F007DE43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED4532CD4678F86AE15DE0FA /* libCharbonCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D6FB06995C2FCBD89A25A648 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABBC38BB90AFEE984BA9362B /* libCharbonCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07239945D3ED1F5FA1390DC1 /* CharbonAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */,
+			);
+			path = CharbonAppTests;
+			sourceTree = "<group>";
+		};
+		262819C6E298CAFE43028B03 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */,
+				BBFC16132CF1334B5EEDDBBE /* Brand */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		30769CFCC473D8B58F4DC5AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E58E9F11ABB976E33BCCDD3 /* Charbon.app */,
+				DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */,
+				E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */,
+				DD05A373CF503617D5E887D4 /* libCharbonCore.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		323A4095C0514A325A1AAFAA = {
+			isa = PBXGroup;
+			children = (
+				262819C6E298CAFE43028B03 /* Resources */,
+				584E782A61334BA85AE7C0A2 /* Sources */,
+				E420042197DF950C075F6B33 /* Tests */,
+				30769CFCC473D8B58F4DC5AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47C4294C2A969B00DFD09A64 /* Charbon */ = {
+			isa = PBXGroup;
+			children = (
+				C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */,
+				7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */,
+				62D84A140829CF1C0DF43000 /* StatusItemController.swift */,
+			);
+			path = Charbon;
+			sourceTree = "<group>";
+		};
+		570A5F42D9D4BB5E5140A69E /* CharbonCore */ = {
+			isa = PBXGroup;
+			children = (
+				9510DA15A90E9D59245B6632 /* Charbon.swift */,
+			);
+			path = CharbonCore;
+			sourceTree = "<group>";
+		};
+		584E782A61334BA85AE7C0A2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				47C4294C2A969B00DFD09A64 /* Charbon */,
+				570A5F42D9D4BB5E5140A69E /* CharbonCore */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		BBFC16132CF1334B5EEDDBBE /* Brand */ = {
+			isa = PBXGroup;
+			children = (
+				DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */,
+			);
+			path = Brand;
+			sourceTree = "<group>";
+		};
+		E05F75243EE40CBAC663230B /* CharbonTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE693349843DED66001C695B /* CharbonTests.swift */,
+			);
+			path = CharbonTests;
+			sourceTree = "<group>";
+		};
+		E420042197DF950C075F6B33 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				07239945D3ED1F5FA1390DC1 /* CharbonAppTests */,
+				E05F75243EE40CBAC663230B /* CharbonTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		64690CAFDDCF0A661D8F2AF0 /* CharbonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F0DEDB319A991B090CABBFF /* Build configuration list for PBXNativeTarget "CharbonTests" */;
+			buildPhases = (
+				B9188AF6652AADA9B0F4D422 /* Sources */,
+				D6FB06995C2FCBD89A25A648 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EDEF630A7E4C0FDE5503760A /* PBXTargetDependency */,
+			);
+			name = CharbonTests;
+			packageProductDependencies = (
+			);
+			productName = CharbonTests;
+			productReference = E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7B9150C707543C1FA8D13054 /* CharbonAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C43D59D1BF253A9E4274C2F9 /* Build configuration list for PBXNativeTarget "CharbonAppTests" */;
+			buildPhases = (
+				7EB60AB866DD8D4D334ED145 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C985315B53E05E7B1E76009 /* PBXTargetDependency */,
+			);
+			name = CharbonAppTests;
+			packageProductDependencies = (
+			);
+			productName = CharbonAppTests;
+			productReference = DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C2F75A3F046757A5C4B21B3F /* CharbonCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 569C2004E0A410E89FCE451F /* Build configuration list for PBXNativeTarget "CharbonCore" */;
+			buildPhases = (
+				9451664EAD80F72C349D013C /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CharbonCore;
+			packageProductDependencies = (
+			);
+			productName = CharbonCore;
+			productReference = DD05A373CF503617D5E887D4 /* libCharbonCore.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		CA5165F33E934CEA45ACA132 /* Charbon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5950A44A97568E2DB48CBD3 /* Build configuration list for PBXNativeTarget "Charbon" */;
+			buildPhases = (
+				63577B1E38114A773DC93687 /* Sources */,
+				F2C686CA10DBEF20C547BB48 /* Resources */,
+				0208F7305F0E5561F007DE43 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68B737E8E057E1DE46C59490 /* PBXTargetDependency */,
+			);
+			name = Charbon;
+			packageProductDependencies = (
+			);
+			productName = Charbon;
+			productReference = 5E58E9F11ABB976E33BCCDD3 /* Charbon.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		079DF6C6C8BD68ACA6547D43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					CA5165F33E934CEA45ACA132 = {
+						DevelopmentTeam = K85JVL5Z98;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 7C4941A5B4828FD09400C8C4 /* Build configuration list for PBXProject "Charbon" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 323A4095C0514A325A1AAFAA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 30769CFCC473D8B58F4DC5AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C2F75A3F046757A5C4B21B3F /* CharbonCore */,
+				CA5165F33E934CEA45ACA132 /* Charbon */,
+				64690CAFDDCF0A661D8F2AF0 /* CharbonTests */,
+				7B9150C707543C1FA8D13054 /* CharbonAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F2C686CA10DBEF20C547BB48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4B1C3E68586ED63C7B2A787 /* Assets.xcassets in Resources */,
+				F419F9A5A3043DE800C654EC /* CharbonAppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		63577B1E38114A773DC93687 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */,
+				7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */,
+				17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EB60AB866DD8D4D334ED145 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9451664EAD80F72C349D013C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B9188AF6652AADA9B0F4D422 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				219EE99350DC94CD71F00915 /* CharbonTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3C985315B53E05E7B1E76009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA5165F33E934CEA45ACA132 /* Charbon */;
+			targetProxy = A87E9C03F55B3F9A653EA95E /* PBXContainerItemProxy */;
+		};
+		68B737E8E057E1DE46C59490 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2F75A3F046757A5C4B21B3F /* CharbonCore */;
+			targetProxy = FFCC3DD3A7D748C6245B6FD9 /* PBXContainerItemProxy */;
+		};
+		EDEF630A7E4C0FDE5503760A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C2F75A3F046757A5C4B21B3F /* CharbonCore */;
+			targetProxy = C29B858099835D89A9659CCF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		18409EFC2208DDAC466B8A97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon.tests;
+				PRODUCT_MODULE_NAME = CharbonTests;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = singlefile;
+			};
+			name = Release;
+		};
+		56C387367AA6CBA4D91598EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon.core;
+				PRODUCT_MODULE_NAME = CharbonCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+			};
+			name = Release;
+		};
+		5DD7203319455530354FC9D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.codevs.charbon.app-tests";
+				PRODUCT_MODULE_NAME = CharbonAppTests;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = singlefile;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Charbon.app/Contents/MacOS/Charbon";
+			};
+			name = Debug;
+		};
+		6CFE9BF22AD664A619C63C31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = CharbonAppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K85JVL5Z98;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon;
+				PRODUCT_MODULE_NAME = Charbon;
+				PRODUCT_NAME = Charbon;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		7F302B5505FED78BBF36CDA8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon.core;
+				PRODUCT_MODULE_NAME = CharbonCore;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+			};
+			name = Debug;
+		};
+		8FA084DCAD145236EA89E9B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		95A2097DA38FE7A5B53EDF19 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "ch.codevs.charbon.app-tests";
+				PRODUCT_MODULE_NAME = CharbonAppTests;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = singlefile;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Charbon.app/Contents/MacOS/Charbon";
+			};
+			name = Release;
+		};
+		A0BCEAD16E38509C2D462561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		D469AF2D9C6BD125ECE98950 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon.tests;
+				PRODUCT_MODULE_NAME = CharbonTests;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = singlefile;
+			};
+			name = Debug;
+		};
+		F6BCF37F6881338F2FD73BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = CharbonAppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = K85JVL5Z98;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ch.codevs.charbon;
+				PRODUCT_MODULE_NAME = Charbon;
+				PRODUCT_NAME = Charbon;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F0DEDB319A991B090CABBFF /* Build configuration list for PBXNativeTarget "CharbonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D469AF2D9C6BD125ECE98950 /* Debug */,
+				18409EFC2208DDAC466B8A97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		569C2004E0A410E89FCE451F /* Build configuration list for PBXNativeTarget "CharbonCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F302B5505FED78BBF36CDA8 /* Debug */,
+				56C387367AA6CBA4D91598EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7C4941A5B4828FD09400C8C4 /* Build configuration list for PBXProject "Charbon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0BCEAD16E38509C2D462561 /* Debug */,
+				8FA084DCAD145236EA89E9B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C43D59D1BF253A9E4274C2F9 /* Build configuration list for PBXNativeTarget "CharbonAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5DD7203319455530354FC9D0 /* Debug */,
+				95A2097DA38FE7A5B53EDF19 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D5950A44A97568E2DB48CBD3 /* Build configuration list for PBXNativeTarget "Charbon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6CFE9BF22AD664A619C63C31 /* Debug */,
+				F6BCF37F6881338F2FD73BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 079DF6C6C8BD68ACA6547D43 /* Project object */;
+}
