@@ -5,6 +5,8 @@ package enum CharbonError: Error, Equatable, Sendable {
   case notSignedIn
   /// The server no longer accepts the stored session.
   case sessionExpired
+  /// The timesheet changed elsewhere: fetch the week again and retry.
+  case staleData
   case network(String)
   case server(status: Int, message: String)
   case invalidResponse(String)
@@ -17,6 +19,8 @@ extension CharbonError: LocalizedError {
       "You are not logged in to Timbrage."
     case .sessionExpired:
       "Your Timbrage session has expired. Log in again."
+    case .staleData:
+      "The timesheet changed elsewhere. Refresh and try again."
     case .network(let message):
       "Could not reach Timbrage: \(message)"
     case let .server(status, message):

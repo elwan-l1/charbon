@@ -11,6 +11,8 @@ package enum CharbonEnvironment {
 
   package static let identityProvider = "https://aai-logon.hes-so.ch/idp/shibboleth"
 
+  package static let apiPath = "/TimbrageWebApi/api/"
+
   /// The Shibboleth page that reports the state of the current session.
   package static let sessionInfoPath = "/Shibboleth.sso/Session"
 
