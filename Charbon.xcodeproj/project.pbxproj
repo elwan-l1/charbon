@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0049C2B530D8941CEFCD4E04 /* WeekModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CED2B97F4D1A7CB2D3C569 /* WeekModels.swift */; };
 		17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D84A140829CF1C0DF43000 /* StatusItemController.swift */; };
+		1B7CCD1B303CDC123E882905 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16F63A4C7AFCB30ABDA5A08 /* SettingsView.swift */; };
 		1B9B9C8D8BF903F398263FEB /* ProjectModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C7173F6098A753F9C8CCC /* ProjectModels.swift */; };
 		219EE99350DC94CD71F00915 /* CharbonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE693349843DED66001C695B /* CharbonTests.swift */; };
 		30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42111D3EF2798C4905FDF31A /* Keychain.swift */; };
@@ -17,6 +18,9 @@
 		4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815591BAE39D29F360AFB0C5 /* CookieVault.swift */; };
 		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
 		63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */; };
+		697341B1D1BA1FF099AD48C0 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */; };
+		6D9F072B132AE7E256B88EB1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */; };
+		739BF90FD1481D1F3D230D65 /* CharbonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC01702B88C2A798A8645B /* CharbonSettings.swift */; };
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
 		83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9807257C3E334B3C95A240 /* HoursValue.swift */; };
@@ -32,6 +36,7 @@
 		B4AFC5E94117F7BDAC344338 /* TimesheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD693BD83813C4791BADBA8D /* TimesheetController.swift */; };
 		C3C845C5DF5D2B62163998E9 /* SessionProbe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */; };
 		C4B1C3E68586ED63C7B2A787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */; };
+		C9BA32CCA462E2571B17717B /* HoursPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01817D888A778A6A7E0744F /* HoursPlanner.swift */; };
 		CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C41E7B1204169906750519 /* SessionStatus.swift */; };
 		CC136FC649C3E1C0F6FDAA09 /* TimesheetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12437B3033B70385494136 /* TimesheetModels.swift */; };
 		CE55566147AC71996B34CAB0 /* TimesheetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2AD4C33C9E4792D95FA555 /* TimesheetClient.swift */; };
@@ -85,14 +90,18 @@
 		6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRenewer.swift; sourceTree = "<group>"; };
 		7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonApplication.swift; sourceTree = "<group>"; };
+		7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		815591BAE39D29F360AFB0C5 /* CookieVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieVault.swift; sourceTree = "<group>"; };
 		825C7173F6098A753F9C8CCC /* ProjectModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModels.swift; sourceTree = "<group>"; };
 		84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampPlanner.swift; sourceTree = "<group>"; };
 		8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProbe.swift; sourceTree = "<group>"; };
 		9510DA15A90E9D59245B6632 /* Charbon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Charbon.swift; sourceTree = "<group>"; };
 		AA9807257C3E334B3C95A240 /* HoursValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursValue.swift; sourceTree = "<group>"; };
+		B16F63A4C7AFCB30ABDA5A08 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C01817D888A778A6A7E0744F /* HoursPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursPlanner.swift; sourceTree = "<group>"; };
 		C2C41E7B1204169906750519 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
 		C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D0EC01702B88C2A798A8645B /* CharbonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonSettings.swift; sourceTree = "<group>"; };
 		D66B9632DCA0D3FDC03FF837 /* ClockTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTime.swift; sourceTree = "<group>"; };
 		DD05A373CF503617D5E887D4 /* libCharbonCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCharbonCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +111,7 @@
 		E2EBDAC3F7278DEC22324FE9 /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
 		E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE693349843DED66001C695B /* CharbonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonTests.swift; sourceTree = "<group>"; };
+		EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		F9FC43EA708035814B15B17B /* CharbonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonError.swift; sourceTree = "<group>"; };
 		FD693BD83813C4791BADBA8D /* TimesheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +186,9 @@
 				170D9E16AD9E9938A4A73832 /* SessionController.swift */,
 				8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */,
 				733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */,
+				EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */,
+				B16F63A4C7AFCB30ABDA5A08 /* SettingsView.swift */,
+				7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */,
 				62D84A140829CF1C0DF43000 /* StatusItemController.swift */,
 				FD693BD83813C4791BADBA8D /* TimesheetController.swift */,
 				054FA1AFAD83B955830D77D4 /* WebKitTransport.swift */,
@@ -189,8 +202,10 @@
 				9510DA15A90E9D59245B6632 /* Charbon.swift */,
 				690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */,
 				F9FC43EA708035814B15B17B /* CharbonError.swift */,
+				D0EC01702B88C2A798A8645B /* CharbonSettings.swift */,
 				D66B9632DCA0D3FDC03FF837 /* ClockTime.swift */,
 				E2EBDAC3F7278DEC22324FE9 /* Decoding.swift */,
+				C01817D888A778A6A7E0744F /* HoursPlanner.swift */,
 				AA9807257C3E334B3C95A240 /* HoursValue.swift */,
 				2EF70F15AE25D8CD73CAE2FB /* HTTPTransport.swift */,
 				825C7173F6098A753F9C8CCC /* ProjectModels.swift */,
@@ -380,6 +395,9 @@
 				341C336985C298123C242E56 /* SessionController.swift in Sources */,
 				C3C845C5DF5D2B62163998E9 /* SessionProbe.swift in Sources */,
 				63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */,
+				697341B1D1BA1FF099AD48C0 /* SettingsModel.swift in Sources */,
+				1B7CCD1B303CDC123E882905 /* SettingsView.swift in Sources */,
+				6D9F072B132AE7E256B88EB1 /* SettingsWindowController.swift in Sources */,
 				17AC72B0BB6110CD69239248 /* StatusItemController.swift in Sources */,
 				B4AFC5E94117F7BDAC344338 /* TimesheetController.swift in Sources */,
 				D50ED2AEA3D372B49060052F /* WebKitTransport.swift in Sources */,
@@ -401,9 +419,11 @@
 				478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */,
 				AD28C0604AF6B8A8AB257F63 /* CharbonEnvironment.swift in Sources */,
 				A6AE33DAEB1C43CF151818D9 /* CharbonError.swift in Sources */,
+				739BF90FD1481D1F3D230D65 /* CharbonSettings.swift in Sources */,
 				F4B4CC9DA3C72A34FF795027 /* ClockTime.swift in Sources */,
 				9564AB4A6CF7C4982EC646E9 /* Decoding.swift in Sources */,
 				AA43A4AE9748221A61A52EA2 /* HTTPTransport.swift in Sources */,
+				C9BA32CCA462E2571B17717B /* HoursPlanner.swift in Sources */,
 				83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */,
 				1B9B9C8D8BF903F398263FEB /* ProjectModels.swift in Sources */,
 				CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */,

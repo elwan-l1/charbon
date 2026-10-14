@@ -48,3 +48,48 @@ package struct ProjectSummary: Decodable, Equatable, Sendable {
     return "\(number) - \(acronym)"
   }
 }
+
+/// A project and activity pair, which hours can be booked on.
+package struct ProjectChoice: Codable, Hashable, Identifiable, Sendable {
+  package var projectId: Int
+  package var activityId: Int
+  package var projectLabel: String
+  package var activityLabel: String
+
+  package init(projectId: Int, activityId: Int, projectLabel: String, activityLabel: String) {
+    self.projectId = projectId
+    self.activityId = activityId
+    self.projectLabel = projectLabel
+    self.activityLabel = activityLabel
+  }
+
+  package var id: String {
+    "\(projectId)/\(activityId)"
+  }
+
+  package var displayName: String {
+    activityLabel.isEmpty ? projectLabel : "\(projectLabel) · \(activityLabel)"
+  }
+
+  package func matches(_ entry: ProjectHours) -> Bool {
+    entry.projectId == projectId && entry.activityId == activityId
+  }
+
+  package func matches(_ row: WeekProject) -> Bool {
+    row.projectId == projectId && row.activityId == activityId
+  }
+
+  /// One choice per activity of each project.
+  package static func choices(from projects: [ProjectSummary]) -> [ProjectChoice] {
+    projects.flatMap { project in
+      project.activities.map {
+        ProjectChoice(
+          projectId: project.id,
+          activityId: $0.id,
+          projectLabel: project.label,
+          activityLabel: $0.title
+        )
+      }
+    }
+  }
+}

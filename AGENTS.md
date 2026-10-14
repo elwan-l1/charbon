@@ -2,29 +2,33 @@
 
 ## Project
 
-Mac menu bar app for timbrage.hefr.ch.
+Mac menu bar app for timbrage.hefr.ch. Keep session alive. Clock in, clock out, book hours.
 
 ## Stack
 
-Swift 6, AppKit, WebKit, macOS 14+. XcodeGen, swift-format, SwiftLint. SwiftPM for core tests.
+Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format, SwiftLint. SwiftPM for core tests.
 
 ## Map
 
-- `Sources/CharbonCore`: pure logic. Session page parser, URLs, errors, API client, models, stamp planner. `package` access, not `public`.
-- `Sources/Charbon`: app. Menu bar, login window, session renew, cookies in Keychain.
+- `Sources/CharbonCore`: pure logic. No UI. API client, models, stamp planner, hours planner, settings. `package` access, not `public`.
+- `Sources/Charbon`: app. Menu bar, login window, session renew, cookies in Keychain, settings window.
 - `Tests/CharbonTests`: core tests. `Tests/CharbonAppTests`: app tests.
-- `docs/API.md`: how Timbrage server works. Read before network work.
+- `docs/API.md`: how Timbrage server work. Read before network work.
 - `project.yml`: source of Xcode project. Edit it, run `make generate`. Never edit `.xcodeproj` by hand.
 - Check: `make verify`. Run app: `make run`.
 
 ## Architecture
 
-- Login by web view. Session cookie is HttpOnly, so ask server through web view, not URLSession.
-- `SessionController` renews session alone: on start, on wake, on timer with jitter. No manual renew.
-- `SessionRenewer` loads renewal URL in hidden web view. Login form instead of timesheet means login needed.
-- `CookieVault` keeps cookies in Keychain across launches.
-- `TimesheetController` loads the week after each renewal and on menu open. It clocks in and out through `TimesheetService`, one write at a time. Expired session renews once, then opens login. Stale data retries once.
-- Menu shows status, today and week hours, and Clock In or Clock Out.
+- Login by web view. Session cookie HttpOnly. Only web view cookie store can read it. `WebKitTransport` copy cookies into URLSession.
+- `SessionController` renew session alone: on start, on wake, on timer with jitter. No manual renew.
+- `SessionRenewer` load renewal URL in hidden web view. Login form instead of timesheet = login needed.
+- `CookieVault` keep cookies in Keychain across launches.
+- `TimesheetController` load week after each renewal and on menu open. One write at a time. Stale data retry once.
+- Server reject session: renew once a minute max. Open login window only if renewal say login needed. Valid session must never open it, else infinite loop.
+- Week call need `no_age` param from `NoAGE` cookie. Without it server answer 404.
+- Clock Out also book today hours on default project (`HoursPlanner`). `addRow` first if project not on week. Stamp stay if booking fail.
+- Settings window: default project, optional hours per day. Saved in `UserDefaults` by `SettingsStore`.
+- Menu show status, today, week, booked hours. Items: Clock In or Clock Out, Settings.
 - Never log or store raw server answers. Contain personal data.
 
 ## Engineering

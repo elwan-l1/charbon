@@ -56,6 +56,38 @@ package struct TimesheetService: Sendable {
     return try await snapshot(now: now)
   }
 
+  package func projects() async throws -> [ProjectChoice] {
+    ProjectChoice.choices(from: try await client.projects())
+  }
+
+  // Books today's worked time on `project`. An open period counts up to `now`.
+  package func bookHours(now: Date, project: ProjectChoice) async throws -> WeekSnapshot {
+    let current = try await snapshot(now: now)
+    guard let today = current.today else {
+      throw CharbonError.todayUnavailable
+    }
+    guard
+      let booking = HoursPlanner.plan(
+        day: today,
+        personID: current.personID,
+        weekProjects: current.timesheet.projects,
+        project: project,
+        workedMinutes: today.workedMinutes(now: ClockTime(date: now, calendar: calendar))
+      )
+    else {
+      return current
+    }
+    if booking.needsRow {
+      try await client.addRow(
+        personID: current.personID,
+        projectID: project.projectId,
+        activityID: project.activityId
+      )
+    }
+    _ = try await client.updateHours(booking.entry, modifierID: current.personID)
+    return try await snapshot(now: now)
+  }
+
   package static func dayKey(_ date: Date, calendar: Calendar) -> String {
     let parts = calendar.dateComponents([.year, .month, .day], from: date)
     return String(format: "%04d-%02d-%02d", parts.year ?? 0, parts.month ?? 0, parts.day ?? 0)

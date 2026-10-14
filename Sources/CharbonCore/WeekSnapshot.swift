@@ -41,6 +41,11 @@ package struct WeekSnapshot: Equatable, Sendable {
     }
   }
 
+  /// Hours booked on projects today.
+  package var todayBookedMinutes: Int {
+    today?.projects.reduce(0) { $0 + ($1.duration?.minutes ?? 0) } ?? 0
+  }
+
   package var todayTargetMinutes: Int? {
     today?.toDo?.minutes
   }

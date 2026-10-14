@@ -209,4 +209,9 @@ package struct ProjectHours: Codable, Equatable, Sendable {
     try container.encode(stage, forKey: .stage)
     try container.encode(rowVersion, forKey: .rowVersion)
   }
+
+  /// `nil` when nothing is booked.
+  package var duration: HoursValue? {
+    HoursValue(hours)
+  }
 }

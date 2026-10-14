@@ -6,13 +6,14 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
   private let session: SessionController?
   private let timesheet: TimesheetController?
+  private let settings: SettingsWindowController?
 
   private let sessionStatusItem = NSMenuItem()
-  private let todayItem = NSMenuItem()
-  private let weekItem = NSMenuItem()
+  private let lineItems = (0..<3).map { _ in NSMenuItem() }
   private let messageItem = NSMenuItem()
   private let clockInItem = NSMenuItem()
   private let clockOutItem = NSMenuItem()
+  private let settingsItem = NSMenuItem()
   private let logInItem = NSMenuItem()
   private let logOutItem = NSMenuItem()
 
@@ -20,9 +21,14 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     statusItem.menu
   }
 
-  init(session: SessionController? = nil, timesheet: TimesheetController? = nil) {
+  init(
+    session: SessionController? = nil,
+    timesheet: TimesheetController? = nil,
+    settings: SettingsWindowController? = nil
+  ) {
     self.session = session
     self.timesheet = timesheet
+    self.settings = settings
     super.init()
     configureButton()
     configureMenu()
@@ -45,7 +51,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     menu.autoenablesItems = false
 
     if session != nil {
-      for item in [sessionStatusItem, todayItem, weekItem, messageItem] {
+      for item in [sessionStatusItem] + lineItems + [messageItem] {
         item.isEnabled = false
         menu.addItem(item)
       }
@@ -54,11 +60,23 @@ final class StatusItemController: NSObject, NSMenuDelegate {
       clockInItem.action = #selector(clockIn)
       clockOutItem.title = "Clock Out"
       clockOutItem.action = #selector(clockOut)
+      settingsItem.title = "Settings…"
+      settingsItem.action = #selector(openSettings)
+      settingsItem.keyEquivalent = ","
+      if #available(macOS 27, *) {
+        // AppKit adds a gear to the standard Settings item on its own
+        settingsItem.preferredImageVisibility = .hidden
+      }
       logInItem.title = "Log In…"
       logInItem.action = #selector(logIn)
       logOutItem.title = "Log Out"
       logOutItem.action = #selector(logOut)
-      for item in [clockInItem, clockOutItem, logInItem, logOutItem] {
+      for item in [clockInItem, clockOutItem] {
+        item.target = self
+        menu.addItem(item)
+      }
+      menu.addItem(.separator())
+      for item in [logInItem, logOutItem, settingsItem] {
         item.target = self
         menu.addItem(item)
       }
@@ -111,7 +129,11 @@ final class StatusItemController: NSObject, NSMenuDelegate {
       show("Logged in", message: timesheet?.message, logOut: true)
       return
     }
-    let summary = StatusSummary.make(snapshot: snapshot, now: ClockTime(date: Date()))
+    let summary = StatusSummary.make(
+      snapshot: snapshot,
+      now: ClockTime(date: Date()),
+      dailyHours: settings?.model.settings.dailyHoursOverride
+    )
     var working = false
     if case .working = snapshot.status {
       working = true
@@ -136,7 +158,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     logOut: Bool = false
   ) {
     sessionStatusItem.title = status
-    for (index, item) in [todayItem, weekItem].enumerated() {
+    for (index, item) in lineItems.enumerated() {
       item.title = index < lines.count ? lines[index] : ""
       item.isHidden = index >= lines.count
     }
@@ -162,6 +184,10 @@ final class StatusItemController: NSObject, NSMenuDelegate {
       return
     }
     Task { await timesheet.clockOut() }
+  }
+
+  @objc private func openSettings() {
+    settings?.show()
   }
 
   @objc private func logIn() {

@@ -7,7 +7,10 @@ final class TimesheetController {
   private static let staleAfter: TimeInterval = 15
   private static let recoveryInterval: TimeInterval = 60
 
+  private typealias Operation = (TimesheetService) async throws -> WeekSnapshot
+
   private let session: SessionController
+  private let settings: SettingsModel
   private let service = TimesheetService(
     client: TimesheetClient(transport: WebKitTransport()),
     noAge: { await WebKitTransport.cookieValue(named: "NoAGE") }
@@ -22,8 +25,9 @@ final class TimesheetController {
 
   var onChange: (() -> Void)?
 
-  init(session: SessionController) {
+  init(session: SessionController, settings: SettingsModel) {
     self.session = session
+    self.settings = settings
   }
 
   func sessionChanged(to state: SessionController.State) {
@@ -55,24 +59,40 @@ final class TimesheetController {
   }
 
   func clockIn() async {
-    await perform { try await $0.clockIn(now: Date()) }
+    await perform([{ try await $0.clockIn(now: Date()) }])
   }
 
+  // The stamp is saved first. If booking fails after it, the stamp stays.
   func clockOut() async {
-    await perform { try await $0.clockOut(now: Date()) }
+    var steps: [Operation] = [{ try await $0.clockOut(now: Date()) }]
+    if let project = settings.settings.defaultProject {
+      steps.append { try await $0.bookHours(now: Date(), project: project) }
+    }
+    await perform(steps)
   }
 
-  private func perform(_ operation: (TimesheetService) async throws -> WeekSnapshot) async {
+  func projectChoices() async throws -> [ProjectChoice] {
+    try await service.projects()
+      .sorted { $0.displayName.localizedStandardCompare($1.displayName) == .orderedAscending }
+  }
+
+  // Runs the steps one after the other and stops at the first failure.
+  private func perform(_ steps: [Operation]) async {
     guard !isBusy else {
       return
     }
     isBusy = true
     message = nil
     onChange?()
-    if await !run(operation), let fresh = try? await service.snapshot(now: Date()) {
-      // the write failed, so show what the server really holds
-      snapshot = fresh
-      lastRefresh = Date()
+    for step in steps {
+      guard await run(step) else {
+        if let fresh = try? await service.snapshot(now: Date()) {
+          // a step failed, so show what the server really holds
+          snapshot = fresh
+          lastRefresh = Date()
+        }
+        break
+      }
     }
     isBusy = false
     onChange?()
@@ -80,7 +100,7 @@ final class TimesheetController {
 
   // Returns whether the operation worked. The week is stale when someone else changed it
   // since it was read, and every attempt reads it again, so one more attempt is enough.
-  private func run(_ operation: (TimesheetService) async throws -> WeekSnapshot) async -> Bool {
+  private func run(_ operation: Operation) async -> Bool {
     defer { onChange?() }
     do {
       do {
