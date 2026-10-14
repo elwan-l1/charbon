@@ -34,6 +34,11 @@ package struct StampTime: Codable, Equatable, Sendable {
     isWarranty = container.lossy(.isWarranty, default: false)
     rowVersion = container.lossy(.rowVersion, default: "")
   }
+
+  /// `nil` when the time is not set, whether it is `""` or the `00:00` sentinel.
+  package var clockTime: ClockTime? {
+    time == Self.emptySentinel ? nil : ClockTime(time)
+  }
 }
 
 /// The arrival and departure of one period of a day (0 is the morning, 1 the afternoon).
@@ -108,6 +113,26 @@ package struct PeriodTime: Codable, Equatable, Sendable {
     let incomplete = arrival.time.isEmpty != departure.time.isEmpty
     try container.encode(incomplete, forKey: .errorArrival)
     try container.encode(incomplete, forKey: .errorDeparture)
+  }
+
+  package var isEmpty: Bool {
+    arrival.clockTime == nil && departure.clockTime == nil
+  }
+
+  /// An arrival without a departure: the user is clocked in.
+  package var isOpen: Bool {
+    arrival.clockTime != nil && departure.clockTime == nil
+  }
+
+  /// An open period counts up to `now` when it is given.
+  package func workedMinutes(now: ClockTime?) -> Int {
+    guard let start = arrival.clockTime else {
+      return 0
+    }
+    guard let end = departure.clockTime ?? now else {
+      return 0
+    }
+    return max(0, end.minutes - start.minutes)
   }
 }
 

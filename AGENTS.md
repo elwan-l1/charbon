@@ -10,7 +10,7 @@ Swift 6, AppKit, WebKit, macOS 14+. XcodeGen, swift-format, SwiftLint. SwiftPM f
 
 ## Map
 
-- `Sources/CharbonCore`: pure logic. Session page parser, URLs, errors. `package` access, not `public`.
+- `Sources/CharbonCore`: pure logic. Session page parser, URLs, errors, API client, models, stamp planner. `package` access, not `public`.
 - `Sources/Charbon`: app. Menu bar, login window, session renew, cookies in Keychain.
 - `Tests/CharbonTests`: core tests. `Tests/CharbonAppTests`: app tests.
 - `docs/API.md`: how Timbrage server works. Read before network work.
@@ -23,7 +23,8 @@ Swift 6, AppKit, WebKit, macOS 14+. XcodeGen, swift-format, SwiftLint. SwiftPM f
 - `SessionController` renews session alone: on start, on wake, on timer with jitter. No manual renew.
 - `SessionRenewer` loads renewal URL in hidden web view. Login form instead of timesheet means login needed.
 - `CookieVault` keeps cookies in Keychain across launches.
-- Menu shows "Logged in" or "Not logged in" only.
+- `TimesheetController` loads the week after each renewal and on menu open. It clocks in and out through `TimesheetService`, one write at a time. Expired session renews once, then opens login. Stale data retries once.
+- Menu shows status, today and week hours, and Clock In or Clock Out.
 - Never log or store raw server answers. Contain personal data.
 
 ## Engineering

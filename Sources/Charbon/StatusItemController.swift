@@ -2,11 +2,17 @@ import AppKit
 import CharbonCore
 
 @MainActor
-final class StatusItemController: NSObject {
+final class StatusItemController: NSObject, NSMenuDelegate {
   private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
   private let session: SessionController?
+  private let timesheet: TimesheetController?
 
   private let sessionStatusItem = NSMenuItem()
+  private let todayItem = NSMenuItem()
+  private let weekItem = NSMenuItem()
+  private let messageItem = NSMenuItem()
+  private let clockInItem = NSMenuItem()
+  private let clockOutItem = NSMenuItem()
   private let logInItem = NSMenuItem()
   private let logOutItem = NSMenuItem()
 
@@ -14,13 +20,13 @@ final class StatusItemController: NSObject {
     statusItem.menu
   }
 
-  init(session: SessionController? = nil) {
+  init(session: SessionController? = nil, timesheet: TimesheetController? = nil) {
     self.session = session
+    self.timesheet = timesheet
     super.init()
     configureButton()
     configureMenu()
-    session?.onChange = { [weak self] _ in self?.refreshSessionItems() }
-    refreshSessionItems()
+    update()
   }
 
   private func configureButton() {
@@ -35,17 +41,25 @@ final class StatusItemController: NSObject {
 
   private func configureMenu() {
     let menu = NSMenu()
+    menu.delegate = self
+    menu.autoenablesItems = false
 
     if session != nil {
-      sessionStatusItem.isEnabled = false
+      for item in [sessionStatusItem, todayItem, weekItem, messageItem] {
+        item.isEnabled = false
+        menu.addItem(item)
+      }
+      menu.addItem(.separator())
+      clockInItem.title = "Clock In"
+      clockInItem.action = #selector(clockIn)
+      clockOutItem.title = "Clock Out"
+      clockOutItem.action = #selector(clockOut)
       logInItem.title = "Log In…"
       logInItem.action = #selector(logIn)
       logOutItem.title = "Log Out"
       logOutItem.action = #selector(logOut)
-      for item in [logInItem, logOutItem] {
+      for item in [clockInItem, clockOutItem, logInItem, logOutItem] {
         item.target = self
-      }
-      for item in [sessionStatusItem, logInItem, logOutItem] {
         menu.addItem(item)
       }
       menu.addItem(.separator())
@@ -71,26 +85,83 @@ final class StatusItemController: NSObject {
     statusItem.menu = menu
   }
 
-  private func refreshSessionItems() {
+  func menuWillOpen(_ menu: NSMenu) {
+    timesheet?.refreshIfStale()
+    update()
+  }
+
+  func update() {
     guard let session else {
       return
     }
     switch session.state {
     case .unknown, .checking:
-      show("Checking session…", logIn: false, logOut: false)
+      show("Checking session…")
     case .signedIn:
-      show("Logged in", logIn: false, logOut: true)
+      showTimesheet()
     case .loginRequired:
-      show(SessionStatus.signedOut.summary, logIn: true, logOut: false)
+      show(SessionStatus.signedOut.summary, logIn: true)
     case .failed(let message):
-      show("Could not renew: \(message)", logIn: true, logOut: false)
+      show("Could not renew: \(message)", logIn: true)
     }
   }
 
-  private func show(_ status: String, logIn: Bool, logOut: Bool) {
+  private func showTimesheet() {
+    guard let snapshot = timesheet?.snapshot else {
+      show("Logged in", message: timesheet?.message, logOut: true)
+      return
+    }
+    let summary = StatusSummary.make(snapshot: snapshot, now: ClockTime(date: Date()))
+    var working = false
+    if case .working = snapshot.status {
+      working = true
+    }
+    show(
+      summary.headline,
+      lines: summary.lines,
+      message: timesheet?.message,
+      clockIn: !working,
+      clockOut: working,
+      logOut: true
+    )
+  }
+
+  private func show(
+    _ status: String,
+    lines: [String] = [],
+    message: String? = nil,
+    clockIn: Bool = false,
+    clockOut: Bool = false,
+    logIn: Bool = false,
+    logOut: Bool = false
+  ) {
     sessionStatusItem.title = status
+    for (index, item) in [todayItem, weekItem].enumerated() {
+      item.title = index < lines.count ? lines[index] : ""
+      item.isHidden = index >= lines.count
+    }
+    messageItem.title = message ?? ""
+    messageItem.isHidden = message == nil
+    clockInItem.isHidden = !clockIn
+    clockOutItem.isHidden = !clockOut
     logInItem.isHidden = !logIn
     logOutItem.isHidden = !logOut
+    clockInItem.isEnabled = timesheet?.isBusy != true
+    clockOutItem.isEnabled = timesheet?.isBusy != true
+  }
+
+  @objc private func clockIn() {
+    guard let timesheet else {
+      return
+    }
+    Task { await timesheet.clockIn() }
+  }
+
+  @objc private func clockOut() {
+    guard let timesheet else {
+      return
+    }
+    Task { await timesheet.clockOut() }
   }
 
   @objc private func logIn() {

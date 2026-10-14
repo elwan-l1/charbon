@@ -7,6 +7,14 @@ package enum CharbonError: Error, Equatable, Sendable {
   case sessionExpired
   /// The timesheet changed elsewhere: fetch the week again and retry.
   case staleData
+  /// A clock in while a period is already open.
+  case alreadyClockedIn(since: String)
+  /// A clock out while no period is open.
+  case notClockedIn
+  case endsBeforeStart(arrival: String, departure: String)
+  case startsBeforePreviousPeriod(previousDeparture: String)
+  /// The fetched week does not contain today.
+  case todayUnavailable
   case network(String)
   case server(status: Int, message: String)
   case invalidResponse(String)
@@ -21,6 +29,16 @@ extension CharbonError: LocalizedError {
       "Your Timbrage session has expired. Log in again."
     case .staleData:
       "The timesheet changed elsewhere. Refresh and try again."
+    case .alreadyClockedIn(let since):
+      "You are already clocked in since \(since)."
+    case .notClockedIn:
+      "You are not clocked in."
+    case .endsBeforeStart(let arrival, _):
+      "The departure must be later than the arrival at \(arrival). Try again in a minute."
+    case .startsBeforePreviousPeriod(let previousDeparture):
+      "An earlier period already ends at \(previousDeparture)."
+    case .todayUnavailable:
+      "Today was not found in the current week."
     case .network(let message):
       "Could not reach Timbrage: \(message)"
     case let .server(status, message):

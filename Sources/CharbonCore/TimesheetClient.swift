@@ -36,8 +36,8 @@ package struct TimesheetClient: Sendable {
 
   /// The week that contains `day`, written `yyyy-MM-dd`.
   ///
-  /// The web app also sends the value of its `NoAGE` cookie as `no_age`, probably only to avoid
-  /// caching.
+  /// The web app sends the value of its `NoAGE` cookie as `no_age`. Without it the server
+  /// answers 404.
   package func week(containing day: String, noAge: String? = nil) async throws -> WeekTimesheet {
     var query = [
       URLQueryItem(name: "getAllActivitiesForEachProject", value: "false"),

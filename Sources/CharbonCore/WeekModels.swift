@@ -71,6 +71,15 @@ package struct WeekDay: Decodable, Equatable, Sendable {
   package var key: String {
     String(date.prefix(10))
   }
+
+  package var openPeriod: PeriodTime? {
+    periods.sorted { $0.displayOrder < $1.displayOrder }.last(where: \.isOpen)
+  }
+
+  /// An open period counts up to `now` when it is given.
+  package func workedMinutes(now: ClockTime?) -> Int {
+    periods.reduce(0) { $0 + $1.workedMinutes(now: now) }
+  }
 }
 
 /// The answer of `TimeSheet/Week`.

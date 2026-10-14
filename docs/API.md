@@ -50,7 +50,7 @@ https://timbrage.hefr.ch/Shibboleth.sso/Login?entityID=https://aai-logon.hes-so.
 | GET | `TimeSheet/GetEntryInfo?project_id=…&activity_id=…` | Info for one project entry |
 | GET | `TimeSheet/Month` | Month view |
 
-- `no_age` is the value of the readable `NoAGE` cookie. The web app only uses it to avoid caching, so it is probably optional.
+- `no_age` is the value of the readable `NoAGE` cookie. **Required:** without it, `TimeSheet/Week` answers `404` (JSON) even with a valid session.
 - `MyProfile` contains personal data (AVS number, birth date). **Never log or store the raw response.**
 - The web app does not poll. It re-fetches the week when the user navigates.
 
