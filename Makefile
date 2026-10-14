@@ -1,4 +1,4 @@
-.PHONY: bootstrap generate format format-check lint build release test test-app verify run install open clean
+.PHONY: bootstrap generate format format-check lint build release test test-app verify lint-workflows ci run install open clean
 
 PROJECT := Charbon.xcodeproj
 SCHEME := Charbon
@@ -53,6 +53,11 @@ test-app: generate
 		test
 
 verify: lint test test-app
+
+lint-workflows:
+	actionlint
+
+ci: verify lint-workflows
 
 # Builds without a team, signs ad hoc and launches the app from the build folder.
 run: build
