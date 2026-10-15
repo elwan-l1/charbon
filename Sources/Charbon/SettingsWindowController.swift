@@ -23,6 +23,7 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
       window.center()
       self.window = window
     }
+    model.refreshLaunchAtLogin()
     NSApp.activate()
     window?.makeKeyAndOrderFront(nil)
   }

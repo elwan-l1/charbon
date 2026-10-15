@@ -22,6 +22,7 @@
 		697341B1D1BA1FF099AD48C0 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */; };
 		6D9F072B132AE7E256B88EB1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */; };
 		739BF90FD1481D1F3D230D65 /* CharbonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC01702B88C2A798A8645B /* CharbonSettings.swift */; };
+		76A75108923399575B8D68D0 /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */; };
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
 		83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9807257C3E334B3C95A240 /* HoursValue.swift */; };
@@ -94,6 +95,7 @@
 		7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonApplication.swift; sourceTree = "<group>"; };
 		7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		815591BAE39D29F360AFB0C5 /* CookieVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookieVault.swift; sourceTree = "<group>"; };
+		81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		825C7173F6098A753F9C8CCC /* ProjectModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModels.swift; sourceTree = "<group>"; };
 		84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampPlanner.swift; sourceTree = "<group>"; };
 		8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProbe.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */,
 				815591BAE39D29F360AFB0C5 /* CookieVault.swift */,
 				42111D3EF2798C4905FDF31A /* Keychain.swift */,
+				81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */,
 				603ED23351044E00E26DB7C3 /* LoginWindowController.swift */,
 				6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */,
 				170D9E16AD9E9938A4A73832 /* SessionController.swift */,
@@ -396,6 +399,7 @@
 				7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */,
 				4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */,
 				30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */,
+				76A75108923399575B8D68D0 /* LaunchAtLogin.swift in Sources */,
 				A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */,
 				94700C687F62082B25FF501C /* MainMenu.swift in Sources */,
 				341C336985C298123C242E56 /* SessionController.swift in Sources */,

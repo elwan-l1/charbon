@@ -9,6 +9,7 @@ final class SettingsModel {
   var projects: [ProjectChoice] = []
   var isLoadingProjects = false
   var projectsError: String?
+  var launchAtLogin = LaunchAtLogin.isEnabled
 
   @ObservationIgnored private let store: SettingsStore
   @ObservationIgnored var loadProjects: () async throws -> [ProjectChoice] = { [] }
@@ -17,6 +18,17 @@ final class SettingsModel {
   init(store: SettingsStore = SettingsStore()) {
     self.store = store
     settings = store.load()
+  }
+
+  /// Turns it on or off, then shows what macOS really did: it may ask for approval first.
+  func setLaunchAtLogin(_ isEnabled: Bool) {
+    LaunchAtLogin.apply(isEnabled)
+    refreshLaunchAtLogin()
+  }
+
+  /// The user can also change it in System Settings.
+  func refreshLaunchAtLogin() {
+    launchAtLogin = LaunchAtLogin.isEnabled
   }
 
   func commit() {

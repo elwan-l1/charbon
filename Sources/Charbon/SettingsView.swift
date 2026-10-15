@@ -7,13 +7,14 @@ struct SettingsView: View {
 
   var body: some View {
     Form {
+      generalSection
       menuBarSection
       projectSection
       workingTimeSection
       paySection
     }
     .formStyle(.grouped)
-    .frame(width: 480, height: 720)
+    .frame(width: 480, height: 790)
     .onChange(of: model.settings) { model.commit() }
     .sheet(isPresented: $isChoosingProject) {
       ProjectPickerView(model: model)
@@ -41,6 +42,18 @@ struct SettingsView: View {
       Text(
         "Clocking out books the time worked today on this project. "
           + "Hours already booked on other projects are left alone."
+      )
+    }
+  }
+
+  private var generalSection: some View {
+    Section("General") {
+      Toggle(
+        "Open \(Charbon.name) at login",
+        isOn: Binding(
+          get: { model.launchAtLogin },
+          set: { model.setLaunchAtLogin($0) }
+        )
       )
     }
   }
