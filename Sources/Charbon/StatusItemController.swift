@@ -3,7 +3,7 @@ import CharbonCore
 
 @MainActor
 final class StatusItemController: NSObject, NSMenuDelegate {
-  private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+  private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
   private let session: SessionController?
   private let timesheet: TimesheetController?
   private let settings: SettingsWindowController?
@@ -16,6 +16,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private let settingsItem = NSMenuItem()
   private let logInItem = NSMenuItem()
   private let logOutItem = NSMenuItem()
+  private var tick: Timer?
 
   var menu: NSMenu? {
     statusItem.menu
@@ -33,6 +34,12 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     configureButton()
     configureMenu()
     update()
+    // keeps the time next to the icon live
+    let tick = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] _ in
+      MainActor.assumeIsolated { self?.update() }
+    }
+    tick.tolerance = 5
+    self.tick = tick
   }
 
   private func configureButton() {
@@ -132,7 +139,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     let summary = StatusSummary.make(
       snapshot: snapshot,
       now: ClockTime(date: Date()),
-      dailyHours: settings?.model.settings.dailyHoursOverride
+      settings: settings?.model.settings ?? CharbonSettings()
     )
     var working = false
     if case .working = snapshot.status {
@@ -141,6 +148,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     show(
       summary.headline,
       lines: summary.lines,
+      barTitle: summary.barTitle,
       message: timesheet?.message,
       clockIn: !working,
       clockOut: working,
@@ -151,6 +159,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private func show(
     _ status: String,
     lines: [String] = [],
+    barTitle: String? = nil,
     message: String? = nil,
     clockIn: Bool = false,
     clockOut: Bool = false,
@@ -158,6 +167,8 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     logOut: Bool = false
   ) {
     sessionStatusItem.title = status
+    statusItem.button?.title = barTitle.map { " " + $0 } ?? ""
+    statusItem.button?.imagePosition = barTitle == nil ? .imageOnly : .imageLeading
     for (index, item) in lineItems.enumerated() {
       item.title = index < lines.count ? lines[index] : ""
       item.isHidden = index >= lines.count

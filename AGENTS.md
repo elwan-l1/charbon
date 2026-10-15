@@ -27,8 +27,10 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 - Server reject session: renew once a minute max. Open login window only if renewal say login needed. Valid session must never open it, else infinite loop.
 - Week call need `no_age` param from `NoAGE` cookie. Without it server answer 404.
 - Clock Out also book today hours on default project (`HoursPlanner`). `addRow` first if project not on week. Stamp stay if booking fail.
-- Settings window: default project, optional hours per day. Saved in `UserDefaults` by `SettingsStore`.
-- Menu show status, today, week, booked hours. Items: Clock In or Clock Out, Settings.
+- Settings window: default project, optional hours per day, pay, menu bar format. Saved in `UserDefaults` by `SettingsStore`. New field must have default when old saved settings load.
+- Pay: salary (month or year, 12 or 13 installments) or manual hourly rate. Rate = yearly salary / (weekly hours x 52). Never fetch salary from server. Currency CHF.
+- Menu bar text next to icon (`MenuBarDisplay`, 7 formats). Timer in `StatusItemController` refresh it every 30 s.
+- Menu show status, today, week (with money when rate known), booked hours. Items: Clock In or Clock Out, Settings.
 - Never log or store raw server answers. Contain personal data.
 
 ## Engineering

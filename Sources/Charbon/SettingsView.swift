@@ -7,11 +7,13 @@ struct SettingsView: View {
 
   var body: some View {
     Form {
+      menuBarSection
       projectSection
       workingTimeSection
+      paySection
     }
     .formStyle(.grouped)
-    .frame(width: 480, height: 380)
+    .frame(width: 480, height: 720)
     .onChange(of: model.settings) { model.commit() }
     .sheet(isPresented: $isChoosingProject) {
       ProjectPickerView(model: model)
@@ -39,6 +41,26 @@ struct SettingsView: View {
       Text(
         "Clocking out books the time worked today on this project. "
           + "Hours already booked on other projects are left alone."
+      )
+    }
+  }
+
+  private var menuBarSection: some View {
+    Section {
+      Picker("Show next to the icon", selection: $model.settings.menuBarDisplay) {
+        ForEach(MenuBarDisplay.allCases, id: \.self) { display in
+          Text(display.title).tag(display)
+        }
+      }
+      LabeledContent("Example") {
+        Text(model.settings.menuBarDisplay.example).foregroundStyle(.secondary)
+      }
+    } header: {
+      Text("Menu bar")
+    } footer: {
+      Text(
+        "Shown while you are clocked in and after you have worked today. "
+          + "Choices that need the day's hours or an hourly rate show the time worked until known."
       )
     }
   }
@@ -72,6 +94,64 @@ struct SettingsView: View {
       Text("Working time")
     } footer: {
       Text("Sets the hours the menu compares your day and week with.")
+    }
+  }
+
+  private var paySection: some View {
+    Section {
+      Picker("Hourly rate", selection: $model.settings.pay.mode) {
+        Text("From salary").tag(RateMode.salary)
+        Text("Manual").tag(RateMode.hourlyRate)
+      }
+      .pickerStyle(.segmented)
+
+      switch model.settings.pay.mode {
+      case .salary:
+        salaryFields
+      case .hourlyRate:
+        LabeledContent("Rate per hour") {
+          TextField(
+            "Rate",
+            value: $model.settings.pay.hourlyRate,
+            format: .number.precision(.fractionLength(0...2))
+          )
+          .labelsHidden()
+          .multilineTextAlignment(.trailing)
+          .frame(width: 100)
+        }
+      }
+    } header: {
+      Text("Pay")
+    } footer: {
+      Text(
+        model.settings.pay.mode == .salary
+          ? "Hourly rate = yearly salary ÷ (weekly hours × 52). It only appears in your menu."
+          : "Shows what you earned today and this week. It only appears in your menu."
+      )
+    }
+  }
+
+  @ViewBuilder
+  private var salaryFields: some View {
+    LabeledContent("Salary") {
+      TextField(
+        "Amount",
+        value: $model.settings.pay.salaryAmount,
+        format: .number.precision(.fractionLength(0...2)).grouping(.never)
+      )
+      .labelsHidden()
+      .multilineTextAlignment(.trailing)
+      .frame(width: 120)
+    }
+    Picker("Paid", selection: $model.settings.pay.salaryPeriod) {
+      Text("Per month").tag(SalaryPeriod.monthly)
+      Text("Per year").tag(SalaryPeriod.yearly)
+    }
+    if model.settings.pay.salaryPeriod == .monthly {
+      Picker("Installments", selection: $model.settings.pay.installmentsPerYear) {
+        Text("12 per year").tag(12)
+        Text("13 per year").tag(13)
+      }
     }
   }
 }

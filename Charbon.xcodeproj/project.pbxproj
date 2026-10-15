@@ -17,6 +17,7 @@
 		424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */; };
 		4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815591BAE39D29F360AFB0C5 /* CookieVault.swift */; };
 		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
+		596BCED1238506318B2C2AD0 /* MenuBarDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25EFD3CD9E2023DC7BC639F /* MenuBarDisplay.swift */; };
 		63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */; };
 		697341B1D1BA1FF099AD48C0 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */; };
 		6D9F072B132AE7E256B88EB1 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7C9B92A57C5A1EA8D3FA74 /* SettingsWindowController.swift */; };
@@ -41,6 +42,7 @@
 		CC136FC649C3E1C0F6FDAA09 /* TimesheetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12437B3033B70385494136 /* TimesheetModels.swift */; };
 		CE55566147AC71996B34CAB0 /* TimesheetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2AD4C33C9E4792D95FA555 /* TimesheetClient.swift */; };
 		D50ED2AEA3D372B49060052F /* WebKitTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FA1AFAD83B955830D77D4 /* WebKitTransport.swift */; };
+		D8635C391C4FDF8CE2CB13BC /* RateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41569B7B67E51F4C1673B07 /* RateCalculator.swift */; };
 		D8BEED4ED165A927AFD5B223 /* WeekSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */; };
 		E47F6F6001346662E56AB5AC /* StampPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */; };
 		ED4532CD4678F86AE15DE0FA /* libCharbonCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD05A373CF503617D5E887D4 /* libCharbonCore.a */; };
@@ -108,7 +110,9 @@
 		DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusItemControllerTests.swift; sourceTree = "<group>"; };
 		DD7A1C02B4DA2C9E35C98610 /* StatusSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusSummary.swift; sourceTree = "<group>"; };
 		DDE3A6A9F4047C0BE2A20493 /* CharbonAppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = CharbonAppIcon.icon; sourceTree = "<group>"; };
+		E25EFD3CD9E2023DC7BC639F /* MenuBarDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarDisplay.swift; sourceTree = "<group>"; };
 		E2EBDAC3F7278DEC22324FE9 /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
+		E41569B7B67E51F4C1673B07 /* RateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCalculator.swift; sourceTree = "<group>"; };
 		E45ABEC6916C200FA60ED846 /* CharbonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE693349843DED66001C695B /* CharbonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonTests.swift; sourceTree = "<group>"; };
 		EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -208,7 +212,9 @@
 				C01817D888A778A6A7E0744F /* HoursPlanner.swift */,
 				AA9807257C3E334B3C95A240 /* HoursValue.swift */,
 				2EF70F15AE25D8CD73CAE2FB /* HTTPTransport.swift */,
+				E25EFD3CD9E2023DC7BC639F /* MenuBarDisplay.swift */,
 				825C7173F6098A753F9C8CCC /* ProjectModels.swift */,
+				E41569B7B67E51F4C1673B07 /* RateCalculator.swift */,
 				C2C41E7B1204169906750519 /* SessionStatus.swift */,
 				84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */,
 				DD7A1C02B4DA2C9E35C98610 /* StatusSummary.swift */,
@@ -425,7 +431,9 @@
 				AA43A4AE9748221A61A52EA2 /* HTTPTransport.swift in Sources */,
 				C9BA32CCA462E2571B17717B /* HoursPlanner.swift in Sources */,
 				83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */,
+				596BCED1238506318B2C2AD0 /* MenuBarDisplay.swift in Sources */,
 				1B9B9C8D8BF903F398263FEB /* ProjectModels.swift in Sources */,
+				D8635C391C4FDF8CE2CB13BC /* RateCalculator.swift in Sources */,
 				CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */,
 				E47F6F6001346662E56AB5AC /* StampPlanner.swift in Sources */,
 				969CB3B371076485905781F1 /* StatusSummary.swift in Sources */,

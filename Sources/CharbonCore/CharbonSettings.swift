@@ -5,10 +5,47 @@ package struct CharbonSettings: Codable, Equatable, Sendable {
   package var defaultProject: ProjectChoice?
   /// Hours per working day. `nil` uses the hours of the contract.
   package var dailyHoursOverride: Double?
+  package var pay: PaySettings
+  package var menuBarDisplay: MenuBarDisplay
 
-  package init(defaultProject: ProjectChoice? = nil, dailyHoursOverride: Double? = nil) {
+  package init(
+    defaultProject: ProjectChoice? = nil,
+    dailyHoursOverride: Double? = nil,
+    pay: PaySettings = PaySettings(),
+    menuBarDisplay: MenuBarDisplay = .time
+  ) {
     self.defaultProject = defaultProject
     self.dailyHoursOverride = dailyHoursOverride
+    self.pay = pay
+    self.menuBarDisplay = menuBarDisplay
+  }
+
+  private enum CodingKeys: String, CodingKey {
+    case defaultProject, dailyHoursOverride, pay, menuBarDisplay
+  }
+
+  // Settings saved before a field existed must still load, with a default for that field.
+  package init(from decoder: any Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let defaults = CharbonSettings()
+    defaultProject = try? container.decodeIfPresent(ProjectChoice.self, forKey: .defaultProject)
+    dailyHoursOverride = try? container.decodeIfPresent(Double.self, forKey: .dailyHoursOverride)
+    pay = (try? container.decodeIfPresent(PaySettings.self, forKey: .pay)) ?? defaults.pay
+    menuBarDisplay =
+      (try? container.decodeIfPresent(MenuBarDisplay.self, forKey: .menuBarDisplay))
+      ?? defaults.menuBarDisplay
+  }
+
+  /// The hours of a working week: the override over five days, else the hours of the contract.
+  package func weeklyHours(contractMinutes: Int?) -> Double? {
+    if let dailyHoursOverride, dailyHoursOverride > 0 {
+      return dailyHoursOverride * 5
+    }
+    return contractMinutes.map { Double($0) / 60 }
+  }
+
+  package func hourlyRate(contractMinutes: Int?) -> Double? {
+    RateCalculator.hourlyRate(pay: pay, weeklyHours: weeklyHours(contractMinutes: contractMinutes))
   }
 }
 
