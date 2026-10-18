@@ -4,7 +4,7 @@ All notable changes to Charbon are documented here.
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-10-15
+## [0.1.0] - 2026-10-18
 
 ### Added
 
@@ -13,5 +13,5 @@ All notable changes to Charbon are documented here.
 - Clock in and out from the menu.
 - Book the worked hours on a default project when you clock out.
 - Show the worked time, the share of the day or earnings next to the menu bar icon.
-- Settings for the default project, the hours per day, the salary or hourly rate, and the menu bar format.
+- Settings for the default project, the hours per day, the salary or hourly rate and the menu bar format.
 - Launch Charbon at login from Settings.
