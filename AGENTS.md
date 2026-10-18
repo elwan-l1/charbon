@@ -32,7 +32,9 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 - Launch at login: toggle in Settings. `LaunchAtLogin` use `SMAppService.mainApp`. macOS hold the state, not `UserDefaults`. Off by default. Never register from dev build.
 - Menu bar text next to icon (`MenuBarDisplay`, 7 formats). Timer in `StatusItemController` refresh it every 30 s.
 - Menu show status, today, week (with money when rate known), booked hours. Items: Clock In or Clock Out, Settings.
-- Never log or store raw server answers. Contain personal data.
+- Release: push tag `vX.Y.Z` from `main` start `.github/workflows/release.yml`. Preflight, sign with Developer ID, notarize, DMG, GitHub release. Scripts in `Scripts/release/`. No auto-update.
+- Secrets live in GitHub environment `release-signing`: `SIGNING_CERT_P12`, `SIGNING_CERT_PASSWORD`, `NOTARY_API_KEY_P8`, `NOTARY_KEY_ID`, `NOTARY_ISSUER_ID`. Same Apple certificate and key as pathsta.
+- `make release-dry-run` run whole pipeline local: ad hoc sign, no notarize. `make ci` run it.
 
 ## Engineering
 

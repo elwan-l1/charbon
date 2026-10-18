@@ -1,4 +1,4 @@
-.PHONY: bootstrap generate format format-check lint build release test test-app verify lint-workflows ci run install open clean
+.PHONY: bootstrap generate format format-check lint build release test test-app verify lint-workflows release-dry-run ci run install open clean
 
 PROJECT := Charbon.xcodeproj
 SCHEME := Charbon
@@ -8,6 +8,8 @@ DERIVED_DATA := .build/DerivedData
 APP := $(DERIVED_DATA)/Build/Products/Debug/Charbon.app
 RELEASE_APP := $(DERIVED_DATA)/Build/Products/Release/Charbon.app
 INSTALL_DIR := /Applications
+VERSION := $(shell awk '$$1 == "MARKETING_VERSION:" { print $$2; exit }' project.yml)
+BUILD_NUMBER := $(shell awk '$$1 == "CURRENT_PROJECT_VERSION:" { print $$2; exit }' project.yml)
 
 bootstrap:
 	brew bundle
@@ -56,8 +58,21 @@ verify: lint test test-app
 
 lint-workflows:
 	actionlint
+	shellcheck Scripts/release/*.sh
 
-ci: verify lint-workflows
+# Runs the whole release pipeline locally, signed ad hoc and without notarization.
+release-dry-run: generate
+	Scripts/release/preflight.sh v$(VERSION)
+	ALLOW_ADHOC_SIGNING=1 SIGNING_IDENTITY=- \
+		Scripts/release/build-app.sh $(VERSION) $(BUILD_NUMBER)
+	ALLOW_ADHOC_SIGNING=1 SIGNING_IDENTITY=- \
+		Scripts/release/make-dmg.sh $(VERSION)
+	Scripts/release/package-release.sh $(VERSION)
+	ALLOW_ADHOC_SIGNING=1 ALLOW_UNNOTARIZED=1 \
+		Scripts/release/verify-distribution.sh \
+		.build/release/dist/Charbon-$(VERSION).dmg $(VERSION) $(BUILD_NUMBER)
+
+ci: verify lint-workflows release-dry-run
 
 # Builds without a team, signs ad hoc and launches the app from the build folder.
 run: build
