@@ -19,7 +19,7 @@ generate:
 	xcodegen generate
 
 format:
-	swift-format format --in-place Package.swift
+	swift-format format --in-place Package.swift Scripts/make-dmg-background.swift
 	swift-format format --in-place --recursive Sources Tests
 
 format-check:

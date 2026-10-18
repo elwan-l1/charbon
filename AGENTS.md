@@ -34,6 +34,7 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 - Menu show status, today, week (with money when rate known), booked hours. Items: Clock In or Clock Out, Settings.
 - Release: push tag `vX.Y.Z` from `main` start `.github/workflows/release.yml`. Preflight, sign with Developer ID, notarize, DMG, GitHub release. Scripts in `Scripts/release/`. No auto-update.
 - Secrets live in GitHub environment `release-signing`: `SIGNING_CERT_P12`, `SIGNING_CERT_PASSWORD`, `NOTARY_API_KEY_P8`, `NOTARY_KEY_ID`, `NOTARY_ISSUER_ID`. Same Apple certificate and key as pathsta.
+- Disk image window: `dmgbuild` (pinned, in `.build/dmgbuild`) with `Scripts/release/dmg-settings.py`. Background art drawn at build time by `Scripts/make-dmg-background.swift`, no committed images. Style like app icon: flat, hard edges, no rounding, no texture. Background must stay light: Finder draws icon names black on any window with a background picture, even in dark mode. Icon positions in script and settings must match. 2x picture must stay 144 dpi: join with `tiffutil -cat`, never `-cathidpicheck`.
 - `make release-dry-run` run whole pipeline local: ad hoc sign, no notarize. `make ci` run it.
 
 ## Engineering

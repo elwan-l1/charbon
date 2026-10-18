@@ -4,6 +4,12 @@ All notable changes to Charbon are documented here.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-18
+
+### Changed
+
+- The disk image opens with a custom installer window using same style as the rest of the app.
+
 ## [0.1.0] - 2026-10-18
 
 ### Added
