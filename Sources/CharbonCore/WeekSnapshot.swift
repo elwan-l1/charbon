@@ -13,6 +13,12 @@ package struct WeekSnapshot: Equatable, Sendable {
   /// Today as `yyyy-MM-dd`.
   package let todayKey: String
 
+  package init(timesheet: WeekTimesheet, personID: Int, todayKey: String) {
+    self.timesheet = timesheet
+    self.personID = personID
+    self.todayKey = todayKey
+  }
+
   package var today: WeekDay? {
     timesheet.days.first { $0.key == todayKey }
   }

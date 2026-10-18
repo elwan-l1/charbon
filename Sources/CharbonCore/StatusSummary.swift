@@ -19,14 +19,12 @@ package struct StatusSummary: Equatable, Sendable {
     )
     let rate = settings.hourlyRate(contractMinutes: snapshot.weekTargetMinutes)
 
-    var isWorking = false
     let headline: String
     switch snapshot.status {
     case .notStarted:
       headline = "Not clocked in yet"
     case .working(let since):
       headline = "Clocked in since \(since)"
-      isWorking = true
     case .stopped(let end):
       headline = "Clocked out at \(end)"
     }
@@ -49,8 +47,7 @@ package struct StatusSummary: Equatable, Sendable {
       barTitle: settings.menuBarDisplay.text(
         workedMinutes: todayWorked,
         targetMinutes: todayTarget,
-        hourlyRate: rate,
-        isWorking: isWorking
+        hourlyRate: rate
       )
     )
   }

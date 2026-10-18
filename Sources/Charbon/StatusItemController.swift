@@ -6,7 +6,9 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
   private let session: SessionController?
   private let timesheet: TimesheetController?
-  private let settings: SettingsWindowController?
+  private let settings: SettingsModel?
+  private let openWindow: (() -> Void)?
+  private let openSettingsScreen: (() -> Void)?
 
   private let sessionStatusItem = NSMenuItem()
   private let lineItems = (0..<3).map { _ in NSMenuItem() }
@@ -25,11 +27,15 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   init(
     session: SessionController? = nil,
     timesheet: TimesheetController? = nil,
-    settings: SettingsWindowController? = nil
+    settings: SettingsModel? = nil,
+    openWindow: (() -> Void)? = nil,
+    openSettings: (() -> Void)? = nil
   ) {
     self.session = session
     self.timesheet = timesheet
     self.settings = settings
+    self.openWindow = openWindow
+    self.openSettingsScreen = openSettings
     super.init()
     configureButton()
     configureMenu()
@@ -58,6 +64,11 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     menu.autoenablesItems = false
 
     if session != nil {
+      let open = NSMenuItem(
+        title: "Open \(Charbon.name)", action: #selector(showWindow), keyEquivalent: "")
+      open.target = self
+      menu.addItem(open)
+      menu.addItem(.separator())
       for item in [sessionStatusItem] + lineItems + [messageItem] {
         item.isEnabled = false
         menu.addItem(item)
@@ -119,6 +130,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     guard let session else {
       return
     }
+    statusItem.isVisible = settings?.settings.showsMenuBarItem ?? true
     switch session.state {
     case .unknown, .checking:
       show("Checking session…")
@@ -139,7 +151,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     let summary = StatusSummary.make(
       snapshot: snapshot,
       now: ClockTime(date: Date()),
-      settings: settings?.model.settings ?? CharbonSettings()
+      settings: settings?.settings ?? CharbonSettings()
     )
     var working = false
     if case .working = snapshot.status {
@@ -197,8 +209,12 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     Task { await timesheet.clockOut() }
   }
 
+  @objc private func showWindow() {
+    openWindow?()
+  }
+
   @objc private func openSettings() {
-    settings?.show()
+    openSettingsScreen?()
   }
 
   @objc private func logIn() {

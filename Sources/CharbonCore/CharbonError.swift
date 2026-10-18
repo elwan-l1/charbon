@@ -12,6 +12,8 @@ package enum CharbonError: Error, Equatable, Sendable {
   /// A clock out while no period is open.
   case notClockedIn
   case endsBeforeStart(arrival: String, departure: String)
+  /// A change to a day that makes no sense, in words for the user.
+  case invalidEdit(String)
   case startsBeforePreviousPeriod(previousDeparture: String)
   /// The fetched week does not contain today.
   case todayUnavailable
@@ -35,6 +37,8 @@ extension CharbonError: LocalizedError {
       "You are not clocked in."
     case .endsBeforeStart(let arrival, _):
       "The departure must be later than the arrival at \(arrival). Try again in a minute."
+    case .invalidEdit(let reason):
+      reason
     case .startsBeforePreviousPeriod(let previousDeparture):
       "An earlier period already ends at \(previousDeparture)."
     case .todayUnavailable:

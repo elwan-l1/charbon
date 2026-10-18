@@ -11,7 +11,8 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 ## Map
 
 - `Sources/CharbonCore`: pure logic. No UI. API client, models, stamp planner, hours planner, settings. `package` access, not `public`.
-- `Sources/Charbon`: app. Menu bar, login window, session renew, cookies in Keychain, settings window.
+- `Sources/Charbon`: app. Main window, menu bar, login window, session renew, cookies in Keychain, settings window.
+- `Sources/Charbon/UI`: SwiftUI of the main window. `Theme` holds colours and shapes. `AppModel` holds screen and dates.
 - `Tests/CharbonTests`: core tests. `Tests/CharbonAppTests`: app tests.
 - `docs/API.md`: how Timbrage server work. Read before network work.
 - `project.yml`: source of Xcode project. Edit it, run `make generate`. Never edit `.xcodeproj` by hand.
@@ -23,15 +24,20 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 - `SessionController` renew session alone: on start, on wake, on timer with jitter. No manual renew.
 - `SessionRenewer` load renewal URL in hidden web view. Login form instead of timesheet = login needed.
 - `CookieVault` keep cookies in Keychain across launches.
-- `TimesheetController` load week after each renewal and on menu open. One write at a time. Stale data retry once.
+- `TimesheetController` caches weeks and months by first day. Loads today after each renewal and on menu open, other periods when a screen asks. One write at a time. Stale data retry once. After a write it reads every touched week and month again.
+- Main window is a regular app window with Dock icon. Closing it never quits: menu bar item keeps session alive. Screens: Today, Week, Month. Day editor sheet edits stamps and booked hours, through `DayEditPlanner` and `HoursPlanner`.
+- `PeriodReport` and `DayReport` (core) work out totals, project shares, overtime and issues. A past day with an open period counts as zero worked. Vacation and absence hours count as done.
+- Look: flat, thick ink outline, square corners, no radius, no shadows, like the icon. Plain rectangles for every box, button and field. Muted text keeps 4.5:1 contrast, no text under 12 pt. Light and dark both. Setting `appearance` can force one.
 - Server reject session: renew once a minute max. Open login window only if renewal say login needed. Valid session must never open it, else infinite loop.
 - Week call need `no_age` param from `NoAGE` cookie. Without it server answer 404.
 - Clock Out also book today hours on default project (`HoursPlanner`). `addRow` first if project not on week. Stamp stay if booking fail.
-- Settings window: default project, optional hours per day, pay, menu bar format. Saved in `UserDefaults` by `SettingsStore`. New field must have default when old saved settings load.
+- Settings are a screen of the main window, no separate window. Appearance, hours per day, pay (off, salary, hourly rate), menu bar item and format, default project, launch at login. Saved in `UserDefaults` by `SettingsStore`. New field must have default when old saved settings load.
+- Onboarding (`OnboardingView`) shows while `hasCompletedOnboarding` is false: welcome, login, appearance, hours, pay, menu bar, project and startup, summary. Every step can be skipped. Settings can replay it. Editors in `SettingsEditors.swift` and `MenuBarEditor.swift` are shared by Settings and onboarding.
+- Time boxes read `750` as 07:50 and `112` as 11:20 (`TimeInput`). Enter writes the full time and moves to the next box.
 - Pay: salary (month or year, 12 or 13 installments) or manual hourly rate. Rate = yearly salary / (weekly hours x 52). Never fetch salary from server. Currency CHF.
 - Launch at login: toggle in Settings. `LaunchAtLogin` use `SMAppService.mainApp`. macOS hold the state, not `UserDefaults`. Off by default. Never register from dev build.
-- Menu bar text next to icon (`MenuBarDisplay`, 7 formats). Timer in `StatusItemController` refresh it every 30 s.
-- Menu show status, today, week (with money when rate known), booked hours. Items: Clock In or Clock Out, Settings.
+- Menu bar text next to icon (`MenuBarDisplay`, 7 formats), always shown unless icon only. Timer in `StatusItemController` refresh it every 30 s.
+- Menu show status, today, week (with money when rate known), booked hours. Items: Open Charbon, Clock In or Clock Out, Settings (opens the settings screen in the main window). Setting `showsMenuBarItem` hides the item.
 - Release: push tag `vX.Y.Z` from `main` start `.github/workflows/release.yml`. Preflight, sign with Developer ID, notarize, DMG, GitHub release. Scripts in `Scripts/release/`. No auto-update.
 - Secrets live in GitHub environment `release-signing`: `SIGNING_CERT_P12`, `SIGNING_CERT_PASSWORD`, `NOTARY_API_KEY_P8`, `NOTARY_KEY_ID`, `NOTARY_ISSUER_ID`. Same Apple certificate and key as pathsta.
 - Disk image window: `dmgbuild` (pinned, in `.build/dmgbuild`) with `Scripts/release/dmg-settings.py`. Background art drawn at build time by `Scripts/make-dmg-background.swift`, no committed images. Style like app icon: flat, hard edges, no rounding, no texture. Background must stay light: Finder draws icon names black on any window with a background picture, even in dark mode. Icon positions in script and settings must match. 2x picture must stay 144 dpi: join with `tiffutil -cat`, never `-cathidpicheck`.

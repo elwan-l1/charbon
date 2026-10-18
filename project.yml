@@ -71,7 +71,6 @@ targets:
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         LSApplicationCategoryType: public.app-category.productivity
         LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
-        LSUIElement: true
         NSHumanReadableCopyright: Copyright © 2026 Elwan Mayencourt. All rights reserved.
     settings:
       base:
@@ -81,7 +80,7 @@ targets:
         DEVELOPMENT_TEAM: K85JVL5Z98
         ENABLE_HARDENED_RUNTIME: YES
         GENERATE_INFOPLIST_FILE: NO
-        MARKETING_VERSION: 0.1.1
+        MARKETING_VERSION: 0.2.0
         PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon
         PRODUCT_MODULE_NAME: Charbon
         PRODUCT_NAME: Charbon

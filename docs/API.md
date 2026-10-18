@@ -48,7 +48,7 @@ https://timbrage.hefr.ch/Shibboleth.sso/Login?entityID=https://aai-logon.hes-so.
 | POST | `User/MyProfile` | Profile and contract |
 | GET | `TimeSheet/GetAbsenceProject?selected_date=…&is_month_range=false&no_age=…` | Absence projects |
 | GET | `TimeSheet/GetEntryInfo?project_id=…&activity_id=…` | Info for one project entry |
-| GET | `TimeSheet/Month` | Month view |
+| GET | `TimeSheet/Month?getAllActivitiesForEachProject=false&isAdministratorView=false&selected_date=YYYY-MM-DD&no_age=<NoAGE>` | The whole month, in the shape of a week (below) |
 
 - `no_age` is the value of the readable `NoAGE` cookie. **Required:** without it, `TimeSheet/Week` answers `404` (JSON) even with a valid session.
 - `MyProfile` contains personal data (AVS number, birth date). **Never log or store the raw response.**
@@ -74,6 +74,10 @@ Timesheet
 - `ArrivalTime` and `DepartureTime` are each `{ Id, Time, IsWarranty, RowVersion }`.
 - `Stage` 1 means editable.
 - A new, empty entry has `Id: 0` and `RowVersion: ""`.
+- `Total.Balance` is the overtime balance **before the first day**. `Total.Report` is the balance after the last day, with future workdays counted as missed.
+- `Vacancy.Balance` is the vacation left, in **seconds**.
+- A day with `IsDayOff` and a `DayOffName` (like the eve of a holiday) has `ToDo` `0:00`.
+- A past day with an arrival and a departure of `"00:00"` (a forgotten clock out) gets a **negative** `Total.Done`, and the server counts it against the balance. Charbon counts such a day as zero worked and flags it.
 - The server already gives the theoretical hours (`ToDo`: 8:24 a day, 42 h a week at 100%). The app does not need that as a setting. A setting can still override it.
 
 ## 4. Writing

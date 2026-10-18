@@ -8,7 +8,7 @@ package struct HoursBooking: Equatable, Sendable {
   package let hours: HoursValue
 }
 
-/// Works out how many hours to book on the default project.
+/// Works out how many hours to book on a project.
 package enum HoursPlanner {
   /// Hours already booked on other projects the same day are kept, so only the rest lands on the
   /// default project. `nil` when nothing changes.
@@ -27,11 +27,28 @@ package enum HoursPlanner {
     guard target > 0 else {
       return nil
     }
+    return set(
+      day: day,
+      personID: personID,
+      weekProjects: weekProjects,
+      project: project,
+      minutes: target
+    )
+  }
+
+  /// Books exactly `minutes` on `project`, or clears the booking for 0. `nil` when nothing changes.
+  package static func set(
+    day: WeekDay,
+    personID: Int,
+    weekProjects: [WeekProject],
+    project: ProjectChoice,
+    minutes: Int
+  ) -> HoursBooking? {
     let existing = day.projects.first { project.matches($0) }
-    if existing?.duration?.minutes == target {
+    guard minutes != (existing?.duration?.minutes ?? 0) else {
       return nil
     }
-    let hours = HoursValue(minutes: target)
+    let hours = HoursValue(minutes: minutes)
     var entry =
       existing
       ?? ProjectHours(
@@ -42,10 +59,10 @@ package enum HoursPlanner {
         hours: "",
         stage: day.stage
       )
-    entry.hours = hours.formatted
+    entry.hours = minutes > 0 ? hours.formatted : ""
     return HoursBooking(
       entry: entry,
-      needsRow: !weekProjects.contains { project.matches($0) },
+      needsRow: minutes > 0 && !weekProjects.contains { project.matches($0) },
       hours: hours
     )
   }

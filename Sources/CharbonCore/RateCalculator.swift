@@ -6,6 +6,8 @@ package enum SalaryPeriod: String, Codable, CaseIterable, Sendable {
 }
 
 package enum RateMode: String, Codable, CaseIterable, Sendable {
+  /// No money is shown.
+  case off
   /// The rate comes from the salary and the weekly hours.
   case salary
   /// The rate is the one the user typed.
@@ -21,7 +23,7 @@ package struct PaySettings: Codable, Equatable, Sendable {
   package var hourlyRate: Double
 
   package init(
-    mode: RateMode = .salary,
+    mode: RateMode = .off,
     salaryAmount: Double = 0,
     salaryPeriod: SalaryPeriod = .monthly,
     installmentsPerYear: Int = 12,
@@ -57,6 +59,8 @@ package enum RateCalculator {
   // `nil` when it cannot be worked out.
   package static func hourlyRate(pay: PaySettings, weeklyHours: Double?) -> Double? {
     switch pay.mode {
+    case .off:
+      return nil
     case .hourlyRate:
       return pay.hourlyRate > 0 ? pay.hourlyRate : nil
     case .salary:

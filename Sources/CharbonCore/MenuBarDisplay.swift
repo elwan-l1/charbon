@@ -34,15 +34,14 @@ package enum MenuBarDisplay: String, Codable, CaseIterable, Sendable {
     }
   }
 
-  // `nil` means only the icon. Text shows while the user is clocked in or has worked today.
+  // `nil` means only the icon. Any other choice always shows, also before the first clock in.
   // A choice that needs the day's target or an hourly rate shows the time worked until known.
   package func text(
     workedMinutes: Int,
     targetMinutes: Int?,
-    hourlyRate: Double?,
-    isWorking: Bool
+    hourlyRate: Double?
   ) -> String? {
-    guard self != .iconOnly, isWorking || workedMinutes > 0 else {
+    guard self != .iconOnly else {
       return nil
     }
     let time = Self.compact(minutes: workedMinutes)

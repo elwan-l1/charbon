@@ -39,14 +39,36 @@ package struct TimesheetClient: Sendable {
   /// The web app sends the value of its `NoAGE` cookie as `no_age`. Without it the server
   /// answers 404.
   package func week(containing day: String, noAge: String? = nil) async throws -> WeekTimesheet {
-    var query = [
-      URLQueryItem(name: "getAllActivitiesForEachProject", value: "false"),
-      URLQueryItem(name: "selected_date", value: day),
-    ]
+    try await sheet("TimeSheet/Week", containing: day, noAge: noAge)
+  }
+
+  /// The month that contains `day`, written `yyyy-MM-dd`.
+  ///
+  /// The answer has the shape of a week.
+  package func month(containing day: String, noAge: String? = nil) async throws -> WeekTimesheet {
+    try await sheet(
+      "TimeSheet/Month",
+      containing: day,
+      noAge: noAge,
+      extra: [URLQueryItem(name: "isAdministratorView", value: "false")]
+    )
+  }
+
+  private func sheet(
+    _ path: String,
+    containing day: String,
+    noAge: String?,
+    extra: [URLQueryItem] = []
+  ) async throws -> WeekTimesheet {
+    var query =
+      [
+        URLQueryItem(name: "getAllActivitiesForEachProject", value: "false"),
+        URLQueryItem(name: "selected_date", value: day),
+      ] + extra
     if let noAge, !noAge.isEmpty {
       query.append(URLQueryItem(name: "no_age", value: noAge))
     }
-    let request = try makeRequest("GET", "TimeSheet/Week", query: query)
+    let request = try makeRequest("GET", path, query: query)
     return try await decode(WeekEnvelope.self, from: request).timesheet
   }
 
