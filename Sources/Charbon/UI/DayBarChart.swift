@@ -77,10 +77,14 @@ private struct DayBarColumn: View {
       VStack(spacing: 0) {
         Spacer(minLength: 0)
         if day.worked > day.booked {
-          Hatch(color: Theme.muted)
-            .frame(height: scale(day.worked - max(day.booked, 0)))
-            .clipped()
-            .background(Theme.ink.opacity(0.08))
+          if day.isWorking {
+            Rectangle().fill(Theme.ember).frame(height: scale(day.worked - max(day.booked, 0)))
+          } else {
+            Hatch(color: Theme.muted)
+              .frame(height: scale(day.worked - max(day.booked, 0)))
+              .clipped()
+              .background(Theme.ink.opacity(0.08))
+          }
         }
         ForEach(day.bookings.reversed()) { booking in
           Rectangle()
@@ -97,11 +101,6 @@ private struct DayBarColumn: View {
       }
     }
     .frame(height: height)
-    .overlay(alignment: .top) {
-      if day.isWorking {
-        Rectangle().fill(Theme.ember).frame(height: 4)
-      }
-    }
     .clipped()
   }
 

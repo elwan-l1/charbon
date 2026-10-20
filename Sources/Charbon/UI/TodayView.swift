@@ -28,10 +28,6 @@ private struct TodayContent: View {
           Notice(text: message)
         }
         TodayHero(model: model, today: today, now: now)
-        if let today, !today.day.filledPeriods.isEmpty {
-          DayTimeline(day: today, now: ClockTime(date: now))
-            .panel()
-        }
         tiles(week: week, month: month, today: today)
         if let week {
           VStack(alignment: .leading, spacing: 12) {

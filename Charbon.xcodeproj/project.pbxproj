@@ -46,7 +46,6 @@
 		8EE3C8280C9C863B3308D195 /* MenuBarEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD2307EB879DF58F1D3CA /* MenuBarEditor.swift */; };
 		8FADAB40DCB4341FB4A80895 /* DayReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323965A8B01A23B782CE7E10 /* DayReport.swift */; };
 		94700C687F62082B25FF501C /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */; };
-		953ED5423F94B38D543B41E9 /* DayTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD330C7CE2A0F5316A7E5CE /* DayTimeline.swift */; };
 		9564AB4A6CF7C4982EC646E9 /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBDAC3F7278DEC22324FE9 /* Decoding.swift */; };
 		969CB3B371076485905781F1 /* StatusSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A1C02B4DA2C9E35C98610 /* StatusSummary.swift */; };
 		A2BC740D1C1E286A107D5CA8 /* DayEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601D2F9B18780C8D1C603070 /* DayEditorView.swift */; };
@@ -138,7 +137,6 @@
 		81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		825C7173F6098A753F9C8CCC /* ProjectModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModels.swift; sourceTree = "<group>"; };
 		84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampPlanner.swift; sourceTree = "<group>"; };
-		8AD330C7CE2A0F5316A7E5CE /* DayTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTimeline.swift; sourceTree = "<group>"; };
 		8CF42093374A06420D44D188 /* OnboardingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSummary.swift; sourceTree = "<group>"; };
 		8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProbe.swift; sourceTree = "<group>"; };
 		91634133E4F32C9765515B44 /* LogoMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoMark.swift; sourceTree = "<group>"; };
@@ -313,7 +311,6 @@
 				B4FB18CEDCFB764D1C7096DC /* DayBarChart.swift */,
 				7E0662E5AA229A0A06803F66 /* DayEditorDrafts.swift */,
 				601D2F9B18780C8D1C603070 /* DayEditorView.swift */,
-				8AD330C7CE2A0F5316A7E5CE /* DayTimeline.swift */,
 				5119C3ED1BFF65FC7C2D401B /* Format.swift */,
 				BCA79BBC4CAB0AD804890A39 /* FormControls.swift */,
 				91634133E4F32C9765515B44 /* LogoMark.swift */,
@@ -490,7 +487,6 @@
 				BF4155BD0D28BAE4A3DB2158 /* DayBarChart.swift in Sources */,
 				B5F72CD74929ECF992F02D98 /* DayEditorDrafts.swift in Sources */,
 				A2BC740D1C1E286A107D5CA8 /* DayEditorView.swift in Sources */,
-				953ED5423F94B38D543B41E9 /* DayTimeline.swift in Sources */,
 				12D3F316B8BEC930FE27D19D /* FormControls.swift in Sources */,
 				D9B540951A48B79723F3704F /* Format.swift in Sources */,
 				30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */,
