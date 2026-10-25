@@ -283,12 +283,19 @@ struct IssueList: View {
 struct Notice: View {
   let text: String
   var tone: Color = Theme.bad
+  // The problem behind the text. A lasting one comes with the way to write to the maintainer.
+  var problem: CharbonProblem?
 
   var body: some View {
-    HStack(spacing: 10) {
-      Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(tone)
-      Text(text).font(.readingStrong)
-      Spacer(minLength: 0)
+    VStack(alignment: .leading, spacing: 8) {
+      HStack(spacing: 10) {
+        Image(systemName: "exclamationmark.triangle.fill").foregroundStyle(tone)
+        Text(text).font(.readingStrong)
+        Spacer(minLength: 0)
+      }
+      if let problem, !problem.isTransient {
+        ContactLink(problem: problem)
+      }
     }
     .frame(maxWidth: .infinity, alignment: .leading)
     .panel(padding: 14, outline: tone)

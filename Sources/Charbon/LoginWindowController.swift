@@ -13,6 +13,7 @@ final class LoginWindowController: NSObject, NSWindowDelegate, WKNavigationDeleg
   private var webView: WKWebView?
   private var isVerifying = false
   private var retryTimer: Timer?
+  private var autofill = LoginAutofill()
 
   init(onSignedIn: @escaping (Int) -> Void) {
     self.onSignedIn = onSignedIn
@@ -42,6 +43,9 @@ final class LoginWindowController: NSObject, NSWindowDelegate, WKNavigationDeleg
     window.center()
     self.window = window
 
+    autofill.stop()
+    autofill = LoginAutofill()
+    autofill.start(in: webView) { _ in }
     webView.load(URLRequest(url: CharbonEnvironment.timesheetPageURL))
     bringToFront(window)
     startRetrying()
@@ -50,6 +54,7 @@ final class LoginWindowController: NSObject, NSWindowDelegate, WKNavigationDeleg
   func windowWillClose(_ notification: Notification) {
     retryTimer?.invalidate()
     retryTimer = nil
+    autofill.stop()
     window = nil
     webView?.navigationDelegate = nil
     webView = nil
@@ -91,6 +96,7 @@ final class LoginWindowController: NSObject, NSWindowDelegate, WKNavigationDeleg
       return
     }
     Self.logger.notice("Login completed")
+    LoginAutofill.reset()
     window?.close()
     onSignedIn(minutes)
   }

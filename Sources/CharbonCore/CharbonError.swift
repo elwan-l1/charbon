@@ -20,6 +20,24 @@ package enum CharbonError: Error, Equatable, Sendable {
   case network(String)
   case server(status: Int, message: String)
   case invalidResponse(String)
+  /// The Shibboleth session page did not look like one.
+  case sessionPageUnreadable
+  /// The saved login did not get through the identity provider.
+  case autoLoginFailed(AutoLoginFailure)
+}
+
+/// Why the automatic login stopped.
+package enum AutoLoginFailure: Equatable, Sendable {
+  /// The password or the code was sent and the identity provider did not let the user in.
+  case rejected
+  /// The identity provider showed a page the autofill does not know.
+  case unknownPage
+  /// Too many failed tries: the autofill waits until the login is saved again.
+  case paused
+  /// The identity provider asked for a code and no authenticator key is saved.
+  case needsCode
+  /// Nothing happened in time.
+  case timedOut
 }
 
 extension CharbonError: LocalizedError {
@@ -49,6 +67,10 @@ extension CharbonError: LocalizedError {
       message.isEmpty ? "Timbrage answered with an error (HTTP \(status))." : message
     case .invalidResponse(let detail):
       "Timbrage sent an unexpected answer: \(detail)"
+    case .sessionPageUnreadable:
+      "The session page of Timbrage could not be read."
+    case .autoLoginFailed:
+      "The automatic login did not work."
     }
   }
 }

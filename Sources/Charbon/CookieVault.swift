@@ -10,6 +10,7 @@ import WebKit
 @MainActor
 enum CookieVault {
   private static let logger = Logger(subsystem: "ch.codevs.charbon", category: "cookies")
+  private static let account = "web-cookies"
 
   /// How long a cookie without an expiry date is kept once restored.
   ///
@@ -20,21 +21,23 @@ enum CookieVault {
     WKWebsiteDataStore.default().httpCookieStore
   }
 
-  static func save() async {
+  /// False when the cookies could not be kept.
+  static func save() async -> Bool {
     let rows = await cookieStore.allCookies().map(row)
     guard
       let data = try? PropertyListSerialization.data(
         fromPropertyList: rows, format: .binary, options: 0),
-      Keychain.save(data)
+      Keychain.save(data, account: account)
     else {
       logger.error("Could not save the cookies to the Keychain")
-      return
+      return false
     }
+    return true
   }
 
   static func restore() async {
     guard
-      let data = Keychain.load(),
+      let data = Keychain.load(account: account),
       let rows = try? PropertyListSerialization.propertyList(from: data, format: nil)
         as? [[String: Any]]
     else {
@@ -51,7 +54,7 @@ enum CookieVault {
   }
 
   static func delete() {
-    Keychain.delete()
+    Keychain.delete(account: account)
   }
 
   // Keeps only the String and Date values, which a property list can hold.

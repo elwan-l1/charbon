@@ -34,7 +34,7 @@ private struct WeekContent: View {
           today: model.goToCurrent
         )
         if let message = timesheet.message {
-          Notice(text: message)
+          Notice(text: message, problem: timesheet.problem)
         }
         if let report {
           summary(report)

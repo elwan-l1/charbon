@@ -8,26 +8,38 @@ import WebKit
 @MainActor
 final class SessionRenewer: NSObject, WKNavigationDelegate {
   // A login form never reaches the Timbrage page, so waiting this long means a login is needed.
+  // Each page the autofill submits starts the wait again.
   private static let timeout: Duration = .seconds(20)
 
-  private let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+  private let webView: WKWebView
   private var landing: CheckedContinuation<Bool, Never>?
   private var timeoutTask: Task<Void, Never>?
   private var navigationError: String?
+  private var autofill = LoginAutofill()
 
-  override init() {
+  init(dataStore: WKWebsiteDataStore = .default()) {
+    let configuration = WKWebViewConfiguration()
+    configuration.websiteDataStore = dataStore
+    webView = WKWebView(frame: .zero, configuration: configuration)
     super.init()
     webView.navigationDelegate = self
   }
 
   func renew() async throws -> Int {
     navigationError = nil
+    autofill.stop()
+    autofill = LoginAutofill()
+    autofill.start(in: webView) { [weak self] extraWait in self?.restartTimeout(extraWait) }
     webView.load(URLRequest(url: CharbonEnvironment.renewalURL))
     let landed = await waitForLanding()
+    autofill.finish(landed: landed)
     if let navigationError {
       throw CharbonError.network(navigationError)
     }
     guard landed else {
+      if let failure = autofill.failure {
+        throw CharbonError.autoLoginFailed(failure)
+      }
       throw CharbonError.sessionExpired
     }
     switch await SessionProbe.status(in: webView) {
@@ -36,17 +48,31 @@ final class SessionRenewer: NSObject, WKNavigationDelegate {
     case .signedOut?:
       throw CharbonError.sessionExpired
     case nil:
-      throw CharbonError.invalidResponse("The session page could not be read.")
+      throw CharbonError.sessionPageUnreadable
     }
   }
 
   private func waitForLanding() async -> Bool {
     await withCheckedContinuation { continuation in
       landing = continuation
-      timeoutTask = Task { [weak self] in
-        try? await Task.sleep(for: Self.timeout)
-        self?.finishLanding(false)
+      startTimeout()
+    }
+  }
+
+  private func restartTimeout(_ extraWait: Duration) {
+    if landing != nil {
+      startTimeout(extraWait)
+    }
+  }
+
+  private func startTimeout(_ extraWait: Duration = .zero) {
+    timeoutTask?.cancel()
+    timeoutTask = Task { [weak self] in
+      try? await Task.sleep(for: Self.timeout + extraWait)
+      guard !Task.isCancelled else {
+        return
       }
+      self?.finishLanding(false)
     }
   }
 

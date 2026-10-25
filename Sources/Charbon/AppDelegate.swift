@@ -30,6 +30,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     )
     self.statusItemController = statusItemController
     session.onChange = { [weak self] state in
+      self?.model.sessionProblem = self?.session.problem
+      self?.model.showsSessionContact = self?.session.showsContact ?? false
       self?.model.sessionState = state
       statusItemController.update()
       self?.timesheet.sessionChanged(to: state)

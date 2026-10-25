@@ -18,6 +18,7 @@
 		1E76BE893B700E56799C2D5E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A93BBAC8072DA8A17E6FF /* MainWindowController.swift */; };
 		217E4425E9D47A829077E781 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920153102A4F7D923F7DA2AD /* RootView.swift */; };
 		219EE99350DC94CD71F00915 /* CharbonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE693349843DED66001C695B /* CharbonTests.swift */; };
+		24BD766C7E83E3E3476884DB /* ProblemNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7168B6D63D8374C802AF02AB /* ProblemNotice.swift */; };
 		2AFC194731893B90D90884BC /* ProjectPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F644FAA43E12BB99550A15C6 /* ProjectPicker.swift */; };
 		2D11F899475F8DD66A3D461C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA986818059851868A0334B /* Theme.swift */; };
 		30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42111D3EF2798C4905FDF31A /* Keychain.swift */; };
@@ -26,6 +27,7 @@
 		424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */; };
 		445AB485588F3A8B31FCD2A3 /* CharbonCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A24B2E0F77BB64C701274A /* CharbonCalendar.swift */; };
 		471A495090B05920A01BA797 /* PeriodReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160A5F5ADDB12D1C90AF6125 /* PeriodReport.swift */; };
+		475F884C19B42DBAF87CA5D2 /* LoginAutofill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2217BDA6CCC8C7130DE8AC /* LoginAutofill.swift */; };
 		4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815591BAE39D29F360AFB0C5 /* CookieVault.swift */; };
 		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
 		49B4D781765ACAFD2E0341C8 /* AppearanceChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A0608302B056E1399F8D1 /* AppearanceChoice.swift */; };
@@ -42,6 +44,7 @@
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
 		83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9807257C3E334B3C95A240 /* HoursValue.swift */; };
+		869CF11FDA61C18D7DF78C4E /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAAE5703732224AD371F4B /* TOTP.swift */; };
 		8E0B1A8E782D663ADCF73A68 /* TimesheetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFC467EA8665C37AE370F7 /* TimesheetService.swift */; };
 		8EE3C8280C9C863B3308D195 /* MenuBarEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCAD2307EB879DF58F1D3CA /* MenuBarEditor.swift */; };
 		8FADAB40DCB4341FB4A80895 /* DayReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323965A8B01A23B782CE7E10 /* DayReport.swift */; };
@@ -49,6 +52,7 @@
 		9564AB4A6CF7C4982EC646E9 /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EBDAC3F7278DEC22324FE9 /* Decoding.swift */; };
 		969CB3B371076485905781F1 /* StatusSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD7A1C02B4DA2C9E35C98610 /* StatusSummary.swift */; };
 		A2BC740D1C1E286A107D5CA8 /* DayEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601D2F9B18780C8D1C603070 /* DayEditorView.swift */; };
+		A54EB94A2D24E0229EB4D34C /* CharbonProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C12BF369E37455EDFAAFB9 /* CharbonProblem.swift */; };
 		A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603ED23351044E00E26DB7C3 /* LoginWindowController.swift */; };
 		A6AE33DAEB1C43CF151818D9 /* CharbonError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FC43EA708035814B15B17B /* CharbonError.swift */; };
 		AA43A4AE9748221A61A52EA2 /* HTTPTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF70F15AE25D8CD73CAE2FB /* HTTPTransport.swift */; };
@@ -63,10 +67,12 @@
 		CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2C41E7B1204169906750519 /* SessionStatus.swift */; };
 		CC136FC649C3E1C0F6FDAA09 /* TimesheetModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B12437B3033B70385494136 /* TimesheetModels.swift */; };
 		CE55566147AC71996B34CAB0 /* TimesheetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2AD4C33C9E4792D95FA555 /* TimesheetClient.swift */; };
+		D40516241080AD3B13DF177C /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA9767EDFF55851132708C /* LoginCredentials.swift */; };
 		D50ED2AEA3D372B49060052F /* WebKitTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FA1AFAD83B955830D77D4 /* WebKitTransport.swift */; };
 		D8635C391C4FDF8CE2CB13BC /* RateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41569B7B67E51F4C1673B07 /* RateCalculator.swift */; };
 		D8BEED4ED165A927AFD5B223 /* WeekSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */; };
 		D9B540951A48B79723F3704F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5119C3ED1BFF65FC7C2D401B /* Format.swift */; };
+		DD00E95BC6A745C4B0D2943E /* CredentialsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6AA0703565EB9F258018E0 /* CredentialsEditor.swift */; };
 		E06405C428336D4F3D6D9308 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E22E56A30847DBFC2CAB7A /* OnboardingView.swift */; };
 		E47F6F6001346662E56AB5AC /* StampPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */; };
 		ED30E7B3E30EACA459A42A3E /* TimeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE5485B6853A6F3C9CB63DD3 /* TimeInput.swift */; };
@@ -106,6 +112,7 @@
 		160A5F5ADDB12D1C90AF6125 /* PeriodReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodReport.swift; sourceTree = "<group>"; };
 		170D9E16AD9E9938A4A73832 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		25DFC467EA8665C37AE370F7 /* TimesheetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetService.swift; sourceTree = "<group>"; };
+		27C12BF369E37455EDFAAFB9 /* CharbonProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonProblem.swift; sourceTree = "<group>"; };
 		2B12437B3033B70385494136 /* TimesheetModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetModels.swift; sourceTree = "<group>"; };
 		2CA986818059851868A0334B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		2EF70F15AE25D8CD73CAE2FB /* HTTPTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTransport.swift; sourceTree = "<group>"; };
@@ -115,6 +122,7 @@
 		3736FFEB4CF5DB8119981498 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		38E22E56A30847DBFC2CAB7A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		3A2F4EBEE1F78FD5E894533D /* SettingsEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsEditors.swift; sourceTree = "<group>"; };
+		3D6AA0703565EB9F258018E0 /* CredentialsEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsEditor.swift; sourceTree = "<group>"; };
 		400A0608302B056E1399F8D1 /* AppearanceChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceChoice.swift; sourceTree = "<group>"; };
 		42111D3EF2798C4905FDF31A /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		45E03A20C68DC1E7AC0B7DAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +136,7 @@
 		690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonEnvironment.swift; sourceTree = "<group>"; };
 		6B65C7598EB022A7AC9A1425 /* DayEditPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEditPlanner.swift; sourceTree = "<group>"; };
 		6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
+		7168B6D63D8374C802AF02AB /* ProblemNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemNotice.swift; sourceTree = "<group>"; };
 		733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRenewer.swift; sourceTree = "<group>"; };
 		73FDE73C3A8BB6D89497653B /* ProjectPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPalette.swift; sourceTree = "<group>"; };
 		7BCAD2307EB879DF58F1D3CA /* MenuBarEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarEditor.swift; sourceTree = "<group>"; };
@@ -137,6 +146,7 @@
 		81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		825C7173F6098A753F9C8CCC /* ProjectModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModels.swift; sourceTree = "<group>"; };
 		84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StampPlanner.swift; sourceTree = "<group>"; };
+		8A2217BDA6CCC8C7130DE8AC /* LoginAutofill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAutofill.swift; sourceTree = "<group>"; };
 		8CF42093374A06420D44D188 /* OnboardingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSummary.swift; sourceTree = "<group>"; };
 		8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProbe.swift; sourceTree = "<group>"; };
 		91634133E4F32C9765515B44 /* LogoMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoMark.swift; sourceTree = "<group>"; };
@@ -151,10 +161,12 @@
 		C01817D888A778A6A7E0744F /* HoursPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursPlanner.swift; sourceTree = "<group>"; };
 		C20C59B58C1A3A00BDFABE3C /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		C2C41E7B1204169906750519 /* SessionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStatus.swift; sourceTree = "<group>"; };
+		C7FA9767EDFF55851132708C /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
 		C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB3DA9780746A5EE977BEBDC /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		CDFB6B3A1BDF659313E64ED6 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		D0EC01702B88C2A798A8645B /* CharbonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonSettings.swift; sourceTree = "<group>"; };
+		D4AAAE5703732224AD371F4B /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		D66B9632DCA0D3FDC03FF837 /* ClockTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTime.swift; sourceTree = "<group>"; };
 		DD05A373CF503617D5E887D4 /* libCharbonCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCharbonCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD2139101F01A1ACF514F58D /* CharbonAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharbonAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,6 +250,8 @@
 				815591BAE39D29F360AFB0C5 /* CookieVault.swift */,
 				42111D3EF2798C4905FDF31A /* Keychain.swift */,
 				81BC41947BAFE9BA5FCC4A7F /* LaunchAtLogin.swift */,
+				8A2217BDA6CCC8C7130DE8AC /* LoginAutofill.swift */,
+				C7FA9767EDFF55851132708C /* LoginCredentials.swift */,
 				603ED23351044E00E26DB7C3 /* LoginWindowController.swift */,
 				6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */,
 				B28A93BBAC8072DA8A17E6FF /* MainWindowController.swift */,
@@ -260,6 +274,7 @@
 				54A24B2E0F77BB64C701274A /* CharbonCalendar.swift */,
 				690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */,
 				F9FC43EA708035814B15B17B /* CharbonError.swift */,
+				27C12BF369E37455EDFAAFB9 /* CharbonProblem.swift */,
 				D0EC01702B88C2A798A8645B /* CharbonSettings.swift */,
 				D66B9632DCA0D3FDC03FF837 /* ClockTime.swift */,
 				6B65C7598EB022A7AC9A1425 /* DayEditPlanner.swift */,
@@ -279,6 +294,7 @@
 				2F2AD4C33C9E4792D95FA555 /* TimesheetClient.swift */,
 				2B12437B3033B70385494136 /* TimesheetModels.swift */,
 				25DFC467EA8665C37AE370F7 /* TimesheetService.swift */,
+				D4AAAE5703732224AD371F4B /* TOTP.swift */,
 				51CED2B97F4D1A7CB2D3C569 /* WeekModels.swift */,
 				0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */,
 			);
@@ -308,6 +324,7 @@
 				400A0608302B056E1399F8D1 /* AppearanceChoice.swift */,
 				3736FFEB4CF5DB8119981498 /* AppModel.swift */,
 				C20C59B58C1A3A00BDFABE3C /* Components.swift */,
+				3D6AA0703565EB9F258018E0 /* CredentialsEditor.swift */,
 				B4FB18CEDCFB764D1C7096DC /* DayBarChart.swift */,
 				7E0662E5AA229A0A06803F66 /* DayEditorDrafts.swift */,
 				601D2F9B18780C8D1C603070 /* DayEditorView.swift */,
@@ -318,6 +335,7 @@
 				9830C8C88E279BF8E424BDF0 /* MonthView.swift */,
 				8CF42093374A06420D44D188 /* OnboardingSummary.swift */,
 				38E22E56A30847DBFC2CAB7A /* OnboardingView.swift */,
+				7168B6D63D8374C802AF02AB /* ProblemNotice.swift */,
 				73FDE73C3A8BB6D89497653B /* ProjectPalette.swift */,
 				F644FAA43E12BB99550A15C6 /* ProjectPicker.swift */,
 				920153102A4F7D923F7DA2AD /* RootView.swift */,
@@ -484,6 +502,7 @@
 				7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */,
 				38D284AB1DF1B2E6574173B5 /* Components.swift in Sources */,
 				4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */,
+				DD00E95BC6A745C4B0D2943E /* CredentialsEditor.swift in Sources */,
 				BF4155BD0D28BAE4A3DB2158 /* DayBarChart.swift in Sources */,
 				B5F72CD74929ECF992F02D98 /* DayEditorDrafts.swift in Sources */,
 				A2BC740D1C1E286A107D5CA8 /* DayEditorView.swift in Sources */,
@@ -491,6 +510,8 @@
 				D9B540951A48B79723F3704F /* Format.swift in Sources */,
 				30D2E9E8CEF8AA97BA6D1171 /* Keychain.swift in Sources */,
 				76A75108923399575B8D68D0 /* LaunchAtLogin.swift in Sources */,
+				475F884C19B42DBAF87CA5D2 /* LoginAutofill.swift in Sources */,
+				D40516241080AD3B13DF177C /* LoginCredentials.swift in Sources */,
 				A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */,
 				76BC9ABA5C7F92605D563507 /* LogoMark.swift in Sources */,
 				94700C687F62082B25FF501C /* MainMenu.swift in Sources */,
@@ -499,6 +520,7 @@
 				4D439FCE22FED0AECECDC318 /* MonthView.swift in Sources */,
 				05B5ED38D4872D7657D8E8CA /* OnboardingSummary.swift in Sources */,
 				E06405C428336D4F3D6D9308 /* OnboardingView.swift in Sources */,
+				24BD766C7E83E3E3476884DB /* ProblemNotice.swift in Sources */,
 				55B4EC5D5E6EE1925D54FDE0 /* ProjectPalette.swift in Sources */,
 				2AFC194731893B90D90884BC /* ProjectPicker.swift in Sources */,
 				217E4425E9D47A829077E781 /* RootView.swift in Sources */,
@@ -533,6 +555,7 @@
 				445AB485588F3A8B31FCD2A3 /* CharbonCalendar.swift in Sources */,
 				AD28C0604AF6B8A8AB257F63 /* CharbonEnvironment.swift in Sources */,
 				A6AE33DAEB1C43CF151818D9 /* CharbonError.swift in Sources */,
+				A54EB94A2D24E0229EB4D34C /* CharbonProblem.swift in Sources */,
 				739BF90FD1481D1F3D230D65 /* CharbonSettings.swift in Sources */,
 				F4B4CC9DA3C72A34FF795027 /* ClockTime.swift in Sources */,
 				0AE1B8BED67E8078F1276118 /* DayEditPlanner.swift in Sources */,
@@ -548,6 +571,7 @@
 				CBD60D40B56FDF0A82B3D355 /* SessionStatus.swift in Sources */,
 				E47F6F6001346662E56AB5AC /* StampPlanner.swift in Sources */,
 				969CB3B371076485905781F1 /* StatusSummary.swift in Sources */,
+				869CF11FDA61C18D7DF78C4E /* TOTP.swift in Sources */,
 				ED30E7B3E30EACA459A42A3E /* TimeInput.swift in Sources */,
 				CE55566147AC71996B34CAB0 /* TimesheetClient.swift in Sources */,
 				CC136FC649C3E1C0F6FDAA09 /* TimesheetModels.swift in Sources */,

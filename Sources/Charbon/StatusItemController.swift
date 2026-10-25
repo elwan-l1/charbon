@@ -18,6 +18,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private let settingsItem = NSMenuItem()
   private let logInItem = NSMenuItem()
   private let logOutItem = NSMenuItem()
+  private let contactItem = NSMenuItem()
   private var tick: Timer?
 
   var menu: NSMenu? {
@@ -94,7 +95,9 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         menu.addItem(item)
       }
       menu.addItem(.separator())
-      for item in [logInItem, logOutItem, settingsItem] {
+      contactItem.title = "Contact the Maintainer…"
+      contactItem.action = #selector(contactMaintainer)
+      for item in [logInItem, logOutItem, contactItem, settingsItem] {
         item.target = self
         menu.addItem(item)
       }
@@ -137,10 +140,11 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     case .signedIn:
       showTimesheet()
     case .loginRequired:
-      show(SessionStatus.signedOut.summary, logIn: true)
-    case .failed(let message):
-      show("Could not renew: \(message)", logIn: true)
+      show(session.problem?.headline ?? SessionStatus.signedOut.summary, logIn: true)
+    case .failed:
+      show(session.problem?.headline ?? "Could not renew the session", logIn: true)
     }
+    contactItem.isHidden = !session.showsContact
   }
 
   private func showTimesheet() {
@@ -215,6 +219,13 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
   @objc private func openSettings() {
     openSettingsScreen?()
+  }
+
+  @objc private func contactMaintainer() {
+    guard let problem = session?.problem, let url = ContactMail.url(for: problem) else {
+      return
+    }
+    NSWorkspace.shared.open(url)
   }
 
   @objc private func logIn() {

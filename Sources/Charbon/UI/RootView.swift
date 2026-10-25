@@ -10,8 +10,15 @@ struct RootView: View {
       if model.settings.settings.hasCompletedOnboarding {
         HStack(spacing: 0) {
           SidebarView(model: model)
-          content
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+          VStack(spacing: 0) {
+            if let problem = model.sessionProblem {
+              ProblemNotice(problem: problem, showsContact: model.showsSessionContact)
+                .padding(.horizontal, 28)
+                .padding(.top, 28)
+            }
+            content
+              .frame(maxWidth: .infinity, maxHeight: .infinity)
+          }
         }
       } else {
         OnboardingView(model: model)
@@ -40,12 +47,12 @@ struct RootView: View {
     let hasData = model.timesheet.snapshot != nil
     switch model.sessionState {
     case .loginRequired:
-      LoginPrompt(model: model, message: nil)
-    case .failed(let message):
+      LoginPrompt(model: model, canRetry: false)
+    case .failed:
       if hasData {
         screen
       } else {
-        LoginPrompt(model: model, message: message)
+        LoginPrompt(model: model, canRetry: true)
       }
     case .unknown, .checking:
       if hasData {
@@ -80,21 +87,21 @@ struct RootView: View {
 /// Shown when there is no session: one button to log in through the HES-SO page.
 struct LoginPrompt: View {
   let model: AppModel
-  let message: String?
+  let canRetry: Bool
 
   var body: some View {
     VStack(spacing: 22) {
       LogoMark(size: 96)
       Text("Log in to Timbrage")
         .font(.system(size: 28, weight: .heavy))
-      Text(message ?? "Charbon keeps your session alive once you have logged in with HES-SO.")
+      Text("Charbon keeps your session alive once you have logged in with HES-SO.")
         .font(.system(size: 14))
         .foregroundStyle(Theme.muted)
         .multilineTextAlignment(.center)
         .frame(maxWidth: 360)
       Button("Log in") { model.session.showLogin() }
         .buttonStyle(.blockHero)
-      if message != nil {
+      if canRetry {
         Button("Try again") { Task { await model.session.renewNow() } }
           .buttonStyle(.block)
       }

@@ -31,7 +31,15 @@ final class TimesheetController {
 
   var weeks: [String: WeekSnapshot] = [:]
   var months: [String: WeekSnapshot] = [:]
-  private(set) var message: String?
+  private(set) var message: String? {
+    didSet {
+      if message == nil {
+        problem = nil
+      }
+    }
+  }
+  /// What is behind the message when it is a fault and not a mistake of the user.
+  private(set) var problem: CharbonProblem?
   private(set) var isBusy = false
   /// Reads that are running, so the window can show it is working.
   private(set) var loads = 0
@@ -214,8 +222,7 @@ final class TimesheetController {
         onChange?()
       }
     } catch {
-      failure = error.localizedDescription
-      message = failure
+      failure = report(error)
       await recoverIfNeeded(error)
     }
     isBusy = false
@@ -249,8 +256,16 @@ final class TimesheetController {
     }
   }
 
+  // Sets the message, with a code when the error is a fault. Gives the text back.
+  private func report(_ error: any Error) -> String {
+    problem = CharbonProblem(error)
+    let text = problem?.headline ?? error.localizedDescription
+    message = text
+    return text
+  }
+
   private func fail(_ error: any Error) async {
-    message = error.localizedDescription
+    _ = report(error)
     onChange?()
     await recoverIfNeeded(error)
   }

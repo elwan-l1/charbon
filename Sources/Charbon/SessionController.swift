@@ -10,21 +10,30 @@ final class SessionController {
     case checking
     case signedIn(minutesRemaining: Int)
     case loginRequired
-    case failed(String)
+    case failed
   }
 
-  static let retryInterval: Duration = .seconds(5 * 60)
+  /// Failed renewals in a row before the user is told they can write to the maintainer.
+  static let contactAfterFailures = 3
 
-  // The jitter keeps the renewals from happening at a perfectly regular rhythm.
-  private static let renewalMinutes = 60
-  private static let jitterMinutes = 30
-  private static let safetyMinutes = 30
+  // The network is often not back yet when the Mac wakes up.
+  static let retryInterval: Duration = .seconds(15)
+
+  // A renewal logs in again with the saved login when the identity provider forgot the user, so
+  // the timer only has to be regular. The jitter keeps it from a perfectly regular rhythm.
+  private static let renewalMinutes = 90
+  private static let jitterMinutes = 20
 
   private static let logger = Logger(subsystem: "ch.codevs.charbon", category: "session")
 
   private(set) var state = State.unknown {
     didSet { onChange?(state) }
   }
+
+  // What went wrong last, until a renewal works. Set before `state` changes.
+  private(set) var problem: CharbonProblem?
+  // Renewals that failed in a row.
+  private(set) var failures = 0
 
   var onChange: ((State) -> Void)?
 
@@ -57,17 +66,32 @@ final class SessionController {
     do {
       let minutes = try await renewer.renew()
       Self.logger.notice("Session renewed, \(minutes) minutes left")
-      state = .signedIn(minutesRemaining: minutes)
-      schedule(after: Self.delayBeforeRenewal(minutesRemaining: minutes))
-      await CookieVault.save()
+      await signIn(minutes: minutes)
     } catch CharbonError.sessionExpired {
       Self.logger.notice("Session cannot be renewed, a login is required")
+      problem = nil
+      failures = 0
       state = .loginRequired
     } catch {
-      Self.logger.error("Session renewal failed: \(error.localizedDescription, privacy: .public)")
-      state = .failed(error.localizedDescription)
-      schedule(after: Self.retryInterval)
+      record(error)
+      if case CharbonError.autoLoginFailed = error {
+        state = .loginRequired
+      } else {
+        state = .failed
+        schedule(after: Self.retryInterval)
+      }
     }
+  }
+
+  var showsContact: Bool {
+    problem != nil && failures >= Self.contactAfterFailures
+  }
+
+  // Logs in with the saved login in a web view that remembers nothing, so the identity provider
+  // has to ask for it. The real session is left as it is.
+  func testSavedLogin() async -> Bool {
+    let renewer = SessionRenewer(dataStore: .nonPersistent())
+    return (try? await renewer.renew()) != nil
   }
 
   func showLogin() {
@@ -77,9 +101,7 @@ final class SessionController {
         guard let self else {
           return
         }
-        state = .signedIn(minutesRemaining: minutes)
-        schedule(after: Self.delayBeforeRenewal(minutesRemaining: minutes))
-        Task { await CookieVault.save() }
+        Task { await self.signIn(minutes: minutes) }
       }
     loginWindow = controller
     controller.show()
@@ -92,16 +114,27 @@ final class SessionController {
       modifiedSince: .distantPast
     )
     CookieVault.delete()
+    CredentialVault.delete()
+    problem = nil
+    failures = 0
     state = .loginRequired
   }
 
-  // The usual delay, unless the session would then be too close to its end: renew 30 minutes
-  // before the end, or right away if that moment has already passed.
-  static func delayBeforeRenewal(minutesRemaining: Int) -> Duration {
-    let jitter = Int.random(in: -jitterMinutes...jitterMinutes)
-    let usual = renewalMinutes + jitter
-    let latest = max(0, minutesRemaining - safetyMinutes)
-    return .seconds(min(usual, latest) * 60)
+  private func signIn(minutes: Int) async {
+    failures = 0
+    problem = await CookieVault.save() ? nil : .cookiesNotSaved
+    state = .signedIn(minutesRemaining: minutes)
+    schedule(after: Self.delayBeforeRenewal())
+  }
+
+  private func record(_ error: any Error) {
+    Self.logger.error("Session renewal failed: \(error.localizedDescription, privacy: .public)")
+    problem = CharbonProblem(error)
+    failures += 1
+  }
+
+  static func delayBeforeRenewal() -> Duration {
+    .seconds((renewalMinutes + Int.random(in: -jitterMinutes...jitterMinutes)) * 60)
   }
 
   private func schedule(after delay: Duration) {

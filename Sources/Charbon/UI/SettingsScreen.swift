@@ -38,6 +38,12 @@ struct SettingsScreen: View {
             chooseProject: { isChoosingProject = true }
           )
         }
+        section(
+          "Automatic login",
+          help: "Used when Timbrage asks you to log in again."
+        ) {
+          CredentialsEditor(model: model)
+        }
         section("Account", help: nil) { account }
       }
       .padding(28)

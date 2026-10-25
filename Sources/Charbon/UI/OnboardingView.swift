@@ -222,9 +222,10 @@ struct OnboardingView: View {
         Text("Charbon renews the session on its own, so you stay logged in.")
           .font(.reading).foregroundStyle(Theme.muted)
       } else {
-        Button("Log in with HES-SO") { model.session.showLogin() }.buttonStyle(.blockPrimary)
-        Text("A window opens with the normal HES-SO login. You can also do this later.")
+        CredentialsEditor(model: model)
+        Text("Or log in by hand in a window. You can also do this later.")
           .font(.note).foregroundStyle(Theme.muted)
+        Button("Log in with HES-SO") { model.session.showLogin() }.buttonStyle(.block)
       }
     }
   }

@@ -25,7 +25,7 @@ private struct TodayContent: View {
       VStack(alignment: .leading, spacing: 18) {
         header
         if let message = timesheet.message {
-          Notice(text: message)
+          Notice(text: message, problem: timesheet.problem)
         }
         TodayHero(model: model, today: today, now: now)
         tiles(week: week, month: month, today: today)

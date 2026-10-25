@@ -45,6 +45,9 @@ final class AppModel {
   var monthAnchor = Date()
   var editing: EditingDay?
   var sessionState = SessionController.State.unknown
+  // What stops the session, and whether it failed often enough to write to the maintainer.
+  var sessionProblem: CharbonProblem?
+  var showsSessionContact = false
 
   let session: SessionController
   let timesheet: TimesheetController
