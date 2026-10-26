@@ -21,8 +21,13 @@ Swift 6, AppKit, WebKit, SwiftUI for settings. macOS 14+. XcodeGen, swift-format
 ## Architecture
 
 - Login by web view. Session cookie HttpOnly. Only web view cookie store can read it. `WebKitTransport` copy cookies into URLSession.
-- `SessionController` renew session alone: on start, on wake, on timer with jitter. No manual renew.
-- `SessionRenewer` load renewal URL in hidden web view. Login form instead of timesheet = login needed.
+- Session flow. One controller, `SessionController`. No separate manual and automatic session. It starts a renewal on launch, on wake, and every 90 min ±20. A network failure retries after 15 s. A renewal is `SessionRenewer` loading `CharbonEnvironment.renewalURL` in a hidden web view. That URL is the Shibboleth login URL with the HES-SO identity provider as `entityID`: it skips the institution picker and goes straight to edu-ID. Three outcomes, in order:
+  1. Extend. edu-ID still remembers the user (its login cookie, kept by the web view and `CookieVault`, is valid). It sends the web view back to Timbrage with a new session that lasts 8 h. No prompt. `SessionProbe` reads `/Shibboleth.sso/Session` to confirm and get the minutes left. State `signedIn`.
+  2. Kicked to login. edu-ID forgot the user: the URL ends on an edu-ID login form, not on Timbrage. If a login is saved (`CredentialVault`, Keychain, set in Settings or onboarding), `LoginAutofill` fills the pages in the same hidden web view: email, "Use password", password, then the TOTP code if asked (`TOTP`, core). Then it is outcome 1.
+  3. Cannot get in. No saved login: state `loginRequired`, not an error. Saved login but the autofill failed: `loginRequired` plus a `CharbonProblem` 2xxx. Now the user logs in by hand in `LoginWindowController` (visible web view, autofill runs there too). It opens only when an API call needs it, never on its own.
+  The renewal waits 20 s for Timbrage. Each page the autofill fills restarts the wait, and a TOTP code that was just used adds up to 30 s.
+- `LoginAutofill` limits: max 2 tries per page, never the same TOTP code twice, off after 2 failed runs that sent the password. A wrong password must not lock the account. Settings Save resets it. Log Out forgets the saved login.
+- Errors: `CharbonProblem` (core) gives a code and one sentence, never a stack. 1xxx network and session, 2xxx automatic login, 3xxx Keychain, 4xxx Timbrage API, 5000 unexpected. The session keeps `problem` and `failures`. After 3 failures in a row the window and menu offer a mail to the maintainer.
 - `CookieVault` keep cookies in Keychain across launches.
 - `TimesheetController` caches weeks and months by first day. Loads today after each renewal and on menu open, other periods when a screen asks. One write at a time. Stale data retry once. After a write it reads every touched week and month again.
 - Main window is a regular app window with Dock icon. Closing it never quits: menu bar item keeps session alive. Screens: Today, Week, Month. Day editor sheet edits stamps and booked hours, through `DayEditPlanner` and `HoursPlanner`.
