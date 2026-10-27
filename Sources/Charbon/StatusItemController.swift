@@ -1,5 +1,6 @@
 import AppKit
 import CharbonCore
+import Sparkle
 
 @MainActor
 final class StatusItemController: NSObject, NSMenuDelegate {
@@ -9,6 +10,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
   private let settings: SettingsModel?
   private let openWindow: (() -> Void)?
   private let openSettingsScreen: (() -> Void)?
+  private let updater: SPUStandardUpdaterController?
 
   private let sessionStatusItem = NSMenuItem()
   private let lineItems = (0..<3).map { _ in NSMenuItem() }
@@ -30,13 +32,15 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     timesheet: TimesheetController? = nil,
     settings: SettingsModel? = nil,
     openWindow: (() -> Void)? = nil,
-    openSettings: (() -> Void)? = nil
+    openSettings: (() -> Void)? = nil,
+    updater: SPUStandardUpdaterController? = nil
   ) {
     self.session = session
     self.timesheet = timesheet
     self.settings = settings
     self.openWindow = openWindow
     self.openSettingsScreen = openSettings
+    self.updater = updater
     super.init()
     configureButton()
     configureMenu()
@@ -111,6 +115,9 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     )
     about.target = NSApp
     menu.addItem(about)
+    if let updater {
+      menu.addItem(updatesItem(for: updater))
+    }
     menu.addItem(.separator())
 
     let quit = NSMenuItem(
@@ -122,6 +129,16 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     menu.addItem(quit)
 
     statusItem.menu = menu
+  }
+
+  private func updatesItem(for updater: SPUStandardUpdaterController) -> NSMenuItem {
+    let item = NSMenuItem(
+      title: "Check for Updates…",
+      action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)),
+      keyEquivalent: ""
+    )
+    item.target = updater
+    return item
   }
 
   func menuWillOpen(_ menu: NSMenu) {

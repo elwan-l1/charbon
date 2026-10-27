@@ -43,6 +43,7 @@
 		76BC9ABA5C7F92605D563507 /* LogoMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91634133E4F32C9765515B44 /* LogoMark.swift */; };
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
+		812406DAB329F69E9B6EAC40 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 9A269E6C9DA28C950456EDF3 /* Sparkle */; };
 		83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9807257C3E334B3C95A240 /* HoursValue.swift */; };
 		869CF11FDA61C18D7DF78C4E /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAAE5703732224AD371F4B /* TOTP.swift */; };
 		8E0B1A8E782D663ADCF73A68 /* TimesheetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFC467EA8665C37AE370F7 /* TimesheetService.swift */; };
@@ -190,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4532CD4678F86AE15DE0FA /* libCharbonCore.a in Frameworks */,
+				812406DAB329F69E9B6EAC40 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +439,7 @@
 			);
 			name = Charbon;
 			packageProductDependencies = (
+				9A269E6C9DA28C950456EDF3 /* Sparkle */,
 			);
 			productName = Charbon;
 			productReference = 5E58E9F11ABB976E33BCCDD3 /* Charbon.app */;
@@ -466,6 +469,9 @@
 			);
 			mainGroup = 323A4095C0514A325A1AAFAA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C0E10B15AEB43FED1B45443E /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 30769CFCC473D8B58F4DC5AA /* Products */;
 			projectDirPath = "";
@@ -682,7 +688,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -902,7 +908,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.2.0;
+				MARKETING_VERSION = 0.3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -963,6 +969,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C0E10B15AEB43FED1B45443E /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = exactVersion;
+				version = 2.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9A269E6C9DA28C950456EDF3 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0E10B15AEB43FED1B45443E /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 079DF6C6C8BD68ACA6547D43 /* Project object */;
 }

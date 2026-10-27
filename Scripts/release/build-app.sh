@@ -37,6 +37,7 @@ xcodebuild archive \
   -configuration Release \
   -archivePath "${ARCHIVE_PATH}" \
   -destination 'generic/platform=macOS' \
+  -clonedSourcePackagesDirPath "${RELEASE_ROOT}/SourcePackages" \
   CODE_SIGNING_ALLOWED=NO \
   CURRENT_PROJECT_VERSION="${build_number}" \
   MARKETING_VERSION="${version}" \
@@ -50,12 +51,31 @@ archived_app="${ARCHIVE_PATH}/Products/Applications/${APP_NAME}.app"
 ditto --norsrc "${archived_app}" "${APP_PATH}"
 xattr -cr "${APP_PATH}"
 
-# Hardened Runtime, no entitlements: Charbon is not sandboxed and needs none.
-codesign_arguments=(--force --options runtime --generate-entitlement-der --sign "${signing_identity}")
-if [[ "${signing_identity}" != "-" ]]; then
-  codesign_arguments+=(--timestamp)
-fi
-codesign "${codesign_arguments[@]}" "${APP_PATH}"
+sign_component() {
+  local component="$1"
+  shift
+  [[ -e "${component}" ]] || fail "Code-signing component is missing: ${component}"
+
+  local arguments=(--force --options runtime --generate-entitlement-der --sign "${signing_identity}")
+  if [[ "${signing_identity}" != "-" ]]; then
+    arguments+=(--timestamp)
+  fi
+  arguments+=("$@" "${component}")
+  codesign "${arguments[@]}"
+}
+
+# Sparkle contains nested executables that must be signed from the inside out.
+# Do not use --deep for signing: Downloader.xpc carries its own entitlements.
+# Hardened Runtime, no entitlements for Charbon itself: it is not sandboxed and needs none.
+sparkle_framework="${APP_PATH}/Contents/Frameworks/Sparkle.framework"
+sparkle_version="${sparkle_framework}/Versions/B"
+sign_component "${sparkle_version}/XPCServices/Installer.xpc"
+sign_component "${sparkle_version}/XPCServices/Downloader.xpc" \
+  --preserve-metadata=entitlements
+sign_component "${sparkle_version}/Autoupdate"
+sign_component "${sparkle_version}/Updater.app"
+sign_component "${sparkle_framework}"
+sign_component "${APP_PATH}"
 codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
 
 actual_version="$(defaults read "${APP_PATH}/Contents/Info" CFBundleShortVersionString)"

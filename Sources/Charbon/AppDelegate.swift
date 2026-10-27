@@ -1,17 +1,22 @@
 import AppKit
 import CharbonCore
 import OSLog
+import Sparkle
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
   private static let logger = Logger(subsystem: "ch.codevs.charbon", category: "application")
 
+  // Checks only when the user asks: the Info.plist turns every automatic check off.
+  private let updaterController = SPUStandardUpdaterController(
+    startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
   private let session = SessionController()
   private let settings = SettingsModel()
   private lazy var timesheet = TimesheetController(session: session, settings: settings)
   private lazy var model = AppModel(session: session, timesheet: timesheet, settings: settings)
   private lazy var mainWindow = MainWindowController(model: model)
-  private lazy var mainMenu = MainMenu(model: model, windows: mainWindow)
+  private lazy var mainMenu = MainMenu(
+    model: model, windows: mainWindow, updater: updaterController)
   private var statusItemController: StatusItemController?
 
   func applicationDidFinishLaunching(_ notification: Notification) {
@@ -26,7 +31,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       openSettings: { [weak self] in
         self?.model.screen = .settings
         self?.mainWindow.show()
-      }
+      },
+      updater: updaterController
     )
     self.statusItemController = statusItemController
     session.onChange = { [weak self] state in

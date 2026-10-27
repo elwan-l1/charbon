@@ -11,6 +11,11 @@ configs:
   Debug: debug
   Release: release
 
+packages:
+  Sparkle:
+    url: https://github.com/sparkle-project/Sparkle
+    exactVersion: 2.10.0
+
 settings:
   base:
     CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
@@ -62,6 +67,7 @@ targets:
         buildPhase: resources
     dependencies:
       - target: CharbonCore
+      - package: Sparkle
     info:
       path: Resources/Info.plist
       properties:
@@ -72,6 +78,13 @@ targets:
         LSApplicationCategoryType: public.app-category.productivity
         LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
         NSHumanReadableCopyright: Copyright © 2026 Elwan Mayencourt. All rights reserved.
+        SUAllowsAutomaticUpdates: false
+        SUAutomaticallyUpdate: false
+        SUEnableAutomaticChecks: false
+        SUFeedURL: https://github.com/elwan-l1/charbon/releases/latest/download/appcast.xml
+        SUPublicEDKey: EH9iwEtptbzRJEqEBz31sLVc9SgR1XoFeJIfzrqFaYs=
+        SURequireSignedFeed: true
+        SUVerifyUpdateBeforeExtraction: true
     settings:
       base:
         ASSETCATALOG_COMPILER_APPICON_NAME: CharbonAppIcon
@@ -80,7 +93,7 @@ targets:
         DEVELOPMENT_TEAM: K85JVL5Z98
         ENABLE_HARDENED_RUNTIME: YES
         GENERATE_INFOPLIST_FILE: NO
-        MARKETING_VERSION: 0.2.0
+        MARKETING_VERSION: 0.3.0
         PRODUCT_BUNDLE_IDENTIFIER: ch.codevs.charbon
         PRODUCT_MODULE_NAME: Charbon
         PRODUCT_NAME: Charbon

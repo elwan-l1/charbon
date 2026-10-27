@@ -1,5 +1,6 @@
 import AppKit
 import CharbonCore
+import Sparkle
 
 /// The menu of the app.
 ///
@@ -8,10 +9,12 @@ import CharbonCore
 final class MainMenu: NSObject {
   private let model: AppModel
   private let windows: MainWindowController
+  private let updater: SPUStandardUpdaterController
 
-  init(model: AppModel, windows: MainWindowController) {
+  init(model: AppModel, windows: MainWindowController, updater: SPUStandardUpdaterController) {
     self.model = model
     self.windows = windows
+    self.updater = updater
     super.init()
   }
 
@@ -52,6 +55,12 @@ final class MainMenu: NSObject {
       action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)),
       keyEquivalent: ""
     )
+    let updates = menu.addItem(
+      withTitle: "Check for Updates…",
+      action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)),
+      keyEquivalent: ""
+    )
+    updates.target = updater
     menu.addItem(.separator())
     menu.addItem(item("Settings…", #selector(openSettings), ","))
     menu.addItem(.separator())

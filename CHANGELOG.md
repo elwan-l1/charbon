@@ -4,6 +4,19 @@ All notable changes to Charbon are documented here.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-27
+
+### Added
+
+- Automatic login. Save your edu-ID email, password and authenticator key in Settings, and Charbon logs in again by itself when the session is gone. They stay in the Keychain of your Mac.
+- Check for updates from the menu bar or the app menu. Charbon never checks or downloads by itself.
+- Errors show a code and one sentence. After a few failed tries, a link opens a mail to the maintainer with the details filled in.
+
+### Changed
+
+- The session is renewed every 90 minutes, give or take 20, and a failed renewal tries again after 15 seconds.
+- The Today screen no longer shows the day timeline, and the week bars fill from the bottom.
+
 ## [0.2.0] - 2026-10-18
 
 ### Added
