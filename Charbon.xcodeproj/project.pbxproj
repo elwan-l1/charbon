@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0049C2B530D8941CEFCD4E04 /* WeekModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51CED2B97F4D1A7CB2D3C569 /* WeekModels.swift */; };
+		0386D42D33D684BF652948D6 /* AutoStamper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3833182F5C74427FCF7A621 /* AutoStamper.swift */; };
 		05B5ED38D4872D7657D8E8CA /* OnboardingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF42093374A06420D44D188 /* OnboardingSummary.swift */; };
 		09AEF1AAE0DD027BE85807C2 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDFB6B3A1BDF659313E64ED6 /* SettingsScreen.swift */; };
 		0AE1B8BED67E8078F1276118 /* DayEditPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65C7598EB022A7AC9A1425 /* DayEditPlanner.swift */; };
@@ -45,6 +46,7 @@
 		7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */; };
 		7DCF4883A914A0B1336454CE /* StatusItemControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5DE25D4D53BE1C939F4106 /* StatusItemControllerTests.swift */; };
 		812406DAB329F69E9B6EAC40 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 9A269E6C9DA28C950456EDF3 /* Sparkle */; };
+		83C6F9733A3190E41493FA39 /* AutoStampEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3E8BB7F3722CBC1ACE6C2F /* AutoStampEditor.swift */; };
 		83CCB7224E7C3C84554BB805 /* HoursValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9807257C3E334B3C95A240 /* HoursValue.swift */; };
 		869CF11FDA61C18D7DF78C4E /* TOTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAAE5703732224AD371F4B /* TOTP.swift */; };
 		8E0B1A8E782D663ADCF73A68 /* TimesheetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DFC467EA8665C37AE370F7 /* TimesheetService.swift */; };
@@ -75,6 +77,7 @@
 		D8635C391C4FDF8CE2CB13BC /* RateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41569B7B67E51F4C1673B07 /* RateCalculator.swift */; };
 		D8BEED4ED165A927AFD5B223 /* WeekSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */; };
 		D9B540951A48B79723F3704F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5119C3ED1BFF65FC7C2D401B /* Format.swift */; };
+		DA2FD698BF8B8C86FBF84385 /* AutoStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A68AF328C170E973B060F89 /* AutoStamp.swift */; };
 		DD00E95BC6A745C4B0D2943E /* CredentialsEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6AA0703565EB9F258018E0 /* CredentialsEditor.swift */; };
 		E06405C428336D4F3D6D9308 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E22E56A30847DBFC2CAB7A /* OnboardingView.swift */; };
 		E47F6F6001346662E56AB5AC /* StampPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E1CC67CD3EAC3937DB5D4C /* StampPlanner.swift */; };
@@ -133,6 +136,7 @@
 		5119C3ED1BFF65FC7C2D401B /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
 		51CED2B97F4D1A7CB2D3C569 /* WeekModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekModels.swift; sourceTree = "<group>"; };
 		54A24B2E0F77BB64C701274A /* CharbonCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonCalendar.swift; sourceTree = "<group>"; };
+		5A68AF328C170E973B060F89 /* AutoStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoStamp.swift; sourceTree = "<group>"; };
 		5E58E9F11ABB976E33BCCDD3 /* Charbon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Charbon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		601D2F9B18780C8D1C603070 /* DayEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEditorView.swift; sourceTree = "<group>"; };
 		603ED23351044E00E26DB7C3 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		CB3DA9780746A5EE977BEBDC /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
 		CDFB6B3A1BDF659313E64ED6 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		D0EC01702B88C2A798A8645B /* CharbonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonSettings.swift; sourceTree = "<group>"; };
+		D3833182F5C74427FCF7A621 /* AutoStamper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoStamper.swift; sourceTree = "<group>"; };
 		D4AAAE5703732224AD371F4B /* TOTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TOTP.swift; sourceTree = "<group>"; };
 		D66B9632DCA0D3FDC03FF837 /* ClockTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockTime.swift; sourceTree = "<group>"; };
 		DD05A373CF503617D5E887D4 /* libCharbonCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCharbonCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +191,7 @@
 		EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		F644FAA43E12BB99550A15C6 /* ProjectPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPicker.swift; sourceTree = "<group>"; };
 		F9FC43EA708035814B15B17B /* CharbonError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonError.swift; sourceTree = "<group>"; };
+		FB3E8BB7F3722CBC1ACE6C2F /* AutoStampEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoStampEditor.swift; sourceTree = "<group>"; };
 		FD693BD83813C4791BADBA8D /* TimesheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				C944473FC2EDEFBBF7B74B5D /* AppDelegate.swift */,
+				D3833182F5C74427FCF7A621 /* AutoStamper.swift */,
 				7DFC19507AB7811DB6B6E013 /* CharbonApplication.swift */,
 				815591BAE39D29F360AFB0C5 /* CookieVault.swift */,
 				42111D3EF2798C4905FDF31A /* Keychain.swift */,
@@ -277,6 +284,7 @@
 		570A5F42D9D4BB5E5140A69E /* CharbonCore */ = {
 			isa = PBXGroup;
 			children = (
+				5A68AF328C170E973B060F89 /* AutoStamp.swift */,
 				9510DA15A90E9D59245B6632 /* Charbon.swift */,
 				54A24B2E0F77BB64C701274A /* CharbonCalendar.swift */,
 				690F0CC4D6B006B8E7F6D806 /* CharbonEnvironment.swift */,
@@ -330,6 +338,7 @@
 			children = (
 				400A0608302B056E1399F8D1 /* AppearanceChoice.swift */,
 				3736FFEB4CF5DB8119981498 /* AppModel.swift */,
+				FB3E8BB7F3722CBC1ACE6C2F /* AutoStampEditor.swift */,
 				C20C59B58C1A3A00BDFABE3C /* Components.swift */,
 				3D6AA0703565EB9F258018E0 /* CredentialsEditor.swift */,
 				B4FB18CEDCFB764D1C7096DC /* DayBarChart.swift */,
@@ -511,6 +520,8 @@
 				424D43CD196C219719C7B24E /* AppDelegate.swift in Sources */,
 				15D39AAD44ADE9BC372B3C2A /* AppModel.swift in Sources */,
 				49B4D781765ACAFD2E0341C8 /* AppearanceChoice.swift in Sources */,
+				83C6F9733A3190E41493FA39 /* AutoStampEditor.swift in Sources */,
+				0386D42D33D684BF652948D6 /* AutoStamper.swift in Sources */,
 				7C0EC335A2B53AAA4DC7A1F0 /* CharbonApplication.swift in Sources */,
 				38D284AB1DF1B2E6574173B5 /* Components.swift in Sources */,
 				4786D4EC2D2CF144EED78D18 /* CookieVault.swift in Sources */,
@@ -565,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2FD698BF8B8C86FBF84385 /* AutoStamp.swift in Sources */,
 				478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */,
 				445AB485588F3A8B31FCD2A3 /* CharbonCalendar.swift in Sources */,
 				AD28C0604AF6B8A8AB257F63 /* CharbonEnvironment.swift in Sources */,

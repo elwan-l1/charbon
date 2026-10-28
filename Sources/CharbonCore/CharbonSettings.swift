@@ -27,6 +27,7 @@ package struct CharbonSettings: Codable, Equatable, Sendable {
   package var showsMenuBarItem: Bool
   /// Whether the user went through the welcome tour, or skipped it.
   package var hasCompletedOnboarding: Bool
+  package var autoStamp: AutoStampSettings
 
   package init(
     defaultProject: ProjectChoice? = nil,
@@ -35,7 +36,8 @@ package struct CharbonSettings: Codable, Equatable, Sendable {
     menuBarDisplay: MenuBarDisplay = .time,
     appearance: AppearanceMode = .system,
     showsMenuBarItem: Bool = true,
-    hasCompletedOnboarding: Bool = false
+    hasCompletedOnboarding: Bool = false,
+    autoStamp: AutoStampSettings = AutoStampSettings()
   ) {
     self.defaultProject = defaultProject
     self.dailyHoursOverride = dailyHoursOverride
@@ -44,11 +46,12 @@ package struct CharbonSettings: Codable, Equatable, Sendable {
     self.appearance = appearance
     self.showsMenuBarItem = showsMenuBarItem
     self.hasCompletedOnboarding = hasCompletedOnboarding
+    self.autoStamp = autoStamp
   }
 
   private enum CodingKeys: String, CodingKey {
     case defaultProject, dailyHoursOverride, pay, menuBarDisplay, appearance
-    case showsMenuBarItem, hasCompletedOnboarding
+    case showsMenuBarItem, hasCompletedOnboarding, autoStamp
   }
 
   // Settings saved before a field existed must still load, with a default for that field.
@@ -70,6 +73,9 @@ package struct CharbonSettings: Codable, Equatable, Sendable {
     hasCompletedOnboarding =
       (try? container.decodeIfPresent(Bool.self, forKey: .hasCompletedOnboarding))
       ?? defaults.hasCompletedOnboarding
+    autoStamp =
+      (try? container.decodeIfPresent(AutoStampSettings.self, forKey: .autoStamp))
+      ?? defaults.autoStamp
   }
 
   /// The hours of a working week: the override over five days, else the hours of the contract.

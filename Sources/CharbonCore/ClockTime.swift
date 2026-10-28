@@ -1,7 +1,7 @@
 import Foundation
 
 /// A time of day with minute precision, as the API writes it (`07:50`).
-package struct ClockTime: Hashable, Comparable, Sendable, CustomStringConvertible {
+package struct ClockTime: Hashable, Comparable, Codable, Sendable, CustomStringConvertible {
   package let minutes: Int
 
   package init(minutes: Int) {

@@ -4,6 +4,11 @@ All notable changes to Charbon are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Automatic clock in Settings. Choose a window for the start and the end of the morning and of the afternoon. Charbon clocks in when your Mac opens in a start window and clocks out when it sleeps or locks in an end window.
+- A Logs screen under Settings shows what happened to the session and the automatic stamps.
+
 ## [0.3.0] - 2026-10-27
 
 ### Added

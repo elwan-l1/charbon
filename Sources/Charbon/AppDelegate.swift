@@ -13,6 +13,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   private let session = SessionController()
   private let settings = SettingsModel()
   private lazy var timesheet = TimesheetController(session: session, settings: settings)
+  private lazy var autoStamper = AutoStamper(
+    settings: settings, session: session, timesheet: timesheet)
   private lazy var model = AppModel(session: session, timesheet: timesheet, settings: settings)
   private lazy var mainWindow = MainWindowController(model: model)
   private lazy var mainMenu = MainMenu(
@@ -41,6 +43,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       self?.model.sessionState = state
       statusItemController.update()
       self?.timesheet.sessionChanged(to: state)
+      if state.isSignedIn {
+        self?.autoStamper.sessionSignedIn()
+      }
     }
     timesheet.onChange = { statusItemController.update() }
     settings.onChange = { [weak self] in
@@ -54,6 +59,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
       Task { @MainActor in await self?.timesheet.refresh() }
     }
     session.start()
+    autoStamper.start()
     mainWindow.show()
     Self.logger.info("Charbon is ready")
   }

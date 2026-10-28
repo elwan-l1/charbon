@@ -39,6 +39,12 @@ struct SettingsScreen: View {
           )
         }
         section(
+          "Automatic clock",
+          help: "Stamps for you when you open or close your Mac in the times you choose."
+        ) {
+          AutoStampEditor(model: settings)
+        }
+        section(
           "Automatic login",
           help: "Used when Timbrage asks you to log in again."
         ) {

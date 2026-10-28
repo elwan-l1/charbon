@@ -147,17 +147,20 @@ final class TimesheetController {
     }
   }
 
-  func clockIn() async {
-    await mutate(touching: [Date()], steps: [{ try await $0.clockIn(now: Date()) }])
+  /// Returns the reason when it failed.
+  @discardableResult
+  func clockIn(at time: Date = Date()) async -> String? {
+    await mutate(touching: [time], steps: [{ try await $0.clockIn(now: time) }])
   }
 
   // The stamp is saved first. If booking fails after it, the stamp stays.
-  func clockOut() async {
-    var steps: [Step] = [{ try await $0.clockOut(now: Date()) }]
+  @discardableResult
+  func clockOut(at time: Date = Date()) async -> String? {
+    var steps: [Step] = [{ try await $0.clockOut(now: time) }]
     if let project = settings.settings.defaultProject {
-      steps.append { try await $0.bookHours(now: Date(), project: project) }
+      steps.append { try await $0.bookHours(now: time, project: project) }
     }
-    await mutate(touching: [Date()], steps: steps)
+    return await mutate(touching: [time], steps: steps)
   }
 
   /// Saves what the user changed on a day.
