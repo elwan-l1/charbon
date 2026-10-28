@@ -283,7 +283,7 @@ final class TimesheetController {
       return
     }
     lastRecovery = Date()
-    await session.renewNow()
+    await session.renewNow(because: "Timbrage refused a call")
     if session.state == .loginRequired {
       session.showLogin()
     }

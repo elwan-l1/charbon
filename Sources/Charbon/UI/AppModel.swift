@@ -7,6 +7,7 @@ enum Screen: String, CaseIterable, Identifiable {
   case week
   case month
   case settings
+  case logs
 
   var id: String { rawValue }
 
@@ -16,6 +17,7 @@ enum Screen: String, CaseIterable, Identifiable {
     case .week: "Week"
     case .month: "Month"
     case .settings: "Settings"
+    case .logs: "Logs"
     }
   }
 
@@ -25,6 +27,7 @@ enum Screen: String, CaseIterable, Identifiable {
     case .week: "chart.bar"
     case .month: "calendar"
     case .settings: "gearshape"
+    case .logs: "list.bullet.rectangle"
     }
   }
 }
@@ -88,7 +91,7 @@ final class AppModel {
   var isOnCurrentPeriod: Bool {
     let now = Date()
     switch screen {
-    case .today, .settings:
+    case .today, .settings, .logs:
       return true
     case .week:
       return TimesheetController.key(.week, weekAnchor) == TimesheetController.key(.week, now)
@@ -100,7 +103,7 @@ final class AppModel {
   /// Moves the week or the month by `delta`.
   func step(_ delta: Int) {
     switch screen {
-    case .today, .settings:
+    case .today, .settings, .logs:
       break
     case .week:
       weekAnchor = CharbonCalendar.addingDays(7 * delta, to: weekAnchor)
@@ -127,7 +130,7 @@ final class AppModel {
     Task {
       await timesheet.refresh()
       switch screen {
-      case .today, .settings: break
+      case .today, .settings, .logs: break
       case .week: await timesheet.show(.week, containing: weekAnchor, force: true)
       case .month: await timesheet.show(.month, containing: monthAnchor, force: true)
       }

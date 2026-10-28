@@ -108,6 +108,7 @@ struct CredentialsEditor: View {
       return
     }
     LoginAutofill.reset()
+    SessionLog.shared.add(.info, "Login saved")
     Task { await runTest() }
   }
 
@@ -121,7 +122,7 @@ struct CredentialsEditor: View {
     if session.state.isSignedIn {
       works = await session.testSavedLogin()
     } else {
-      await session.renewNow()
+      await session.renewNow(because: "the login was saved")
       works = session.state.isSignedIn
     }
     test = works ? .passed : .failed
@@ -129,6 +130,7 @@ struct CredentialsEditor: View {
 
   private func forget() {
     CredentialVault.delete()
+    SessionLog.shared.add(.info, "Saved login forgotten")
     username = ""
     password = ""
     totpSecret = ""

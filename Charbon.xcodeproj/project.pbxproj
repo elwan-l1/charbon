@@ -32,6 +32,7 @@
 		478BFF884F958744BCDB36F2 /* Charbon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510DA15A90E9D59245B6632 /* Charbon.swift */; };
 		49B4D781765ACAFD2E0341C8 /* AppearanceChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400A0608302B056E1399F8D1 /* AppearanceChoice.swift */; };
 		4D439FCE22FED0AECECDC318 /* MonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9830C8C88E279BF8E424BDF0 /* MonthView.swift */; };
+		4E3D747B7A645247BE8E063E /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9335BA9ED1B2531D5FFC8 /* LogsView.swift */; };
 		4FEA32A415A9BC18AD48F6EC /* SettingsEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F4EBEE1F78FD5E894533D /* SettingsEditors.swift */; };
 		55B4EC5D5E6EE1925D54FDE0 /* ProjectPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FDE73C3A8BB6D89497653B /* ProjectPalette.swift */; };
 		596BCED1238506318B2C2AD0 /* MenuBarDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25EFD3CD9E2023DC7BC639F /* MenuBarDisplay.swift */; };
@@ -70,6 +71,7 @@
 		CE55566147AC71996B34CAB0 /* TimesheetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2AD4C33C9E4792D95FA555 /* TimesheetClient.swift */; };
 		D40516241080AD3B13DF177C /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FA9767EDFF55851132708C /* LoginCredentials.swift */; };
 		D50ED2AEA3D372B49060052F /* WebKitTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FA1AFAD83B955830D77D4 /* WebKitTransport.swift */; };
+		D5284921A56E33FC6689CCA2 /* SessionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DDD19AFB7FA067A4AF148A /* SessionLog.swift */; };
 		D8635C391C4FDF8CE2CB13BC /* RateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41569B7B67E51F4C1673B07 /* RateCalculator.swift */; };
 		D8BEED4ED165A927AFD5B223 /* WeekSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */; };
 		D9B540951A48B79723F3704F /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5119C3ED1BFF65FC7C2D401B /* Format.swift */; };
@@ -112,6 +114,7 @@
 		0DB8ADEC41CD65C99DABC754 /* WeekSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSnapshot.swift; sourceTree = "<group>"; };
 		160A5F5ADDB12D1C90AF6125 /* PeriodReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodReport.swift; sourceTree = "<group>"; };
 		170D9E16AD9E9938A4A73832 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
+		18C9335BA9ED1B2531D5FFC8 /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
 		25DFC467EA8665C37AE370F7 /* TimesheetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetService.swift; sourceTree = "<group>"; };
 		27C12BF369E37455EDFAAFB9 /* CharbonProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharbonProblem.swift; sourceTree = "<group>"; };
 		2B12437B3033B70385494136 /* TimesheetModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetModels.swift; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 		9830C8C88E279BF8E424BDF0 /* MonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthView.swift; sourceTree = "<group>"; };
 		AA9807257C3E334B3C95A240 /* HoursValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursValue.swift; sourceTree = "<group>"; };
 		B28A93BBAC8072DA8A17E6FF /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		B3DDD19AFB7FA067A4AF148A /* SessionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionLog.swift; sourceTree = "<group>"; };
 		B4FB18CEDCFB764D1C7096DC /* DayBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBarChart.swift; sourceTree = "<group>"; };
 		BCA79BBC4CAB0AD804890A39 /* FormControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormControls.swift; sourceTree = "<group>"; };
 		BE5485B6853A6F3C9CB63DD3 /* TimeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInput.swift; sourceTree = "<group>"; };
@@ -258,6 +262,7 @@
 				6E9A846A9C8EAFC589FEC777 /* MainMenu.swift */,
 				B28A93BBAC8072DA8A17E6FF /* MainWindowController.swift */,
 				170D9E16AD9E9938A4A73832 /* SessionController.swift */,
+				B3DDD19AFB7FA067A4AF148A /* SessionLog.swift */,
 				8DF8BEF838A8F7D30242FD5E /* SessionProbe.swift */,
 				733DB0D1136F90BF819F44D5 /* SessionRenewer.swift */,
 				EF84FC49EC3AEF7BA39A8040 /* SettingsModel.swift */,
@@ -333,6 +338,7 @@
 				5119C3ED1BFF65FC7C2D401B /* Format.swift */,
 				BCA79BBC4CAB0AD804890A39 /* FormControls.swift */,
 				91634133E4F32C9765515B44 /* LogoMark.swift */,
+				18C9335BA9ED1B2531D5FFC8 /* LogsView.swift */,
 				7BCAD2307EB879DF58F1D3CA /* MenuBarEditor.swift */,
 				9830C8C88E279BF8E424BDF0 /* MonthView.swift */,
 				8CF42093374A06420D44D188 /* OnboardingSummary.swift */,
@@ -520,6 +526,7 @@
 				D40516241080AD3B13DF177C /* LoginCredentials.swift in Sources */,
 				A5E68CB5A9B41F6C5C3D4D79 /* LoginWindowController.swift in Sources */,
 				76BC9ABA5C7F92605D563507 /* LogoMark.swift in Sources */,
+				4E3D747B7A645247BE8E063E /* LogsView.swift in Sources */,
 				94700C687F62082B25FF501C /* MainMenu.swift in Sources */,
 				1E76BE893B700E56799C2D5E /* MainWindowController.swift in Sources */,
 				8EE3C8280C9C863B3308D195 /* MenuBarEditor.swift in Sources */,
@@ -531,6 +538,7 @@
 				2AFC194731893B90D90884BC /* ProjectPicker.swift in Sources */,
 				217E4425E9D47A829077E781 /* RootView.swift in Sources */,
 				341C336985C298123C242E56 /* SessionController.swift in Sources */,
+				D5284921A56E33FC6689CCA2 /* SessionLog.swift in Sources */,
 				C3C845C5DF5D2B62163998E9 /* SessionProbe.swift in Sources */,
 				63C0389DD41B9559952404EB /* SessionRenewer.swift in Sources */,
 				4FEA32A415A9BC18AD48F6EC /* SettingsEditors.swift in Sources */,

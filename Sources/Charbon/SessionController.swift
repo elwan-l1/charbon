@@ -37,6 +37,7 @@ final class SessionController {
 
   var onChange: ((State) -> Void)?
 
+  private let log = SessionLog.shared
   private let renewer = SessionRenewer()
   private var loginWindow: LoginWindowController?
   private var nextRenewal: Task<Void, Never>?
@@ -47,15 +48,19 @@ final class SessionController {
     wakeObserver = NSWorkspace.shared.notificationCenter.addObserver(
       forName: NSWorkspace.didWakeNotification, object: nil, queue: .main
     ) { [weak self] _ in
-      Task { @MainActor in await self?.renewNow() }
+      Task { @MainActor in
+        self?.log.add(.info, "The Mac woke up")
+        await self?.renewNow()
+      }
     }
+    log.add(.info, "Charbon started")
     Task {
       await CookieVault.restore()
       await renewNow()
     }
   }
 
-  func renewNow() async {
+  func renewNow(because reason: String? = nil) async {
     guard !isRenewing else {
       return
     }
@@ -63,12 +68,18 @@ final class SessionController {
     defer { isRenewing = false }
     nextRenewal?.cancel()
     state = .checking
+    log.add(.info, "Renewing the session", reason.map { "Because \($0)." })
+    let started = ContinuousClock.now
     do {
       let minutes = try await renewer.renew()
       Self.logger.notice("Session renewed, \(minutes) minutes left")
+      log.add(
+        .success, "Session renewed",
+        "\(minutes) min left, took \(Self.seconds(since: started))")
       await signIn(minutes: minutes)
     } catch CharbonError.sessionExpired {
       Self.logger.notice("Session cannot be renewed, a login is required")
+      log.add(.warning, "Logged out", "No saved login.")
       problem = nil
       failures = 0
       state = .loginRequired
@@ -90,17 +101,23 @@ final class SessionController {
   // Logs in with the saved login in a web view that remembers nothing, so the identity provider
   // has to ask for it. The real session is left as it is.
   func testSavedLogin() async -> Bool {
+    log.add(
+      .info, "Testing the saved login", "In a separate web view. The session is left as it is.")
     let renewer = SessionRenewer(dataStore: .nonPersistent())
-    return (try? await renewer.renew()) != nil
+    let works = (try? await renewer.renew()) != nil
+    log.add(works ? .success : .error, works ? "The saved login works" : "The saved login failed")
+    return works
   }
 
   func showLogin() {
+    log.add(.info, "Login window opened")
     let controller =
       loginWindow
       ?? LoginWindowController { [weak self] minutes in
         guard let self else {
           return
         }
+        log.add(.success, "Logged in by hand", "\(minutes) min left")
         Task { await self.signIn(minutes: minutes) }
       }
     loginWindow = controller
@@ -115,6 +132,7 @@ final class SessionController {
     )
     CookieVault.delete()
     CredentialVault.delete()
+    log.add(.info, "Logged out", "Cookies and saved login removed.")
     problem = nil
     failures = 0
     state = .loginRequired
@@ -123,6 +141,9 @@ final class SessionController {
   private func signIn(minutes: Int) async {
     failures = 0
     problem = await CookieVault.save() ? nil : .cookiesNotSaved
+    if let problem {
+      log.add(.warning, problem.headline)
+    }
     state = .signedIn(minutesRemaining: minutes)
     schedule(after: Self.delayBeforeRenewal())
   }
@@ -131,6 +152,14 @@ final class SessionController {
     Self.logger.error("Session renewal failed: \(error.localizedDescription, privacy: .public)")
     problem = CharbonProblem(error)
     failures += 1
+    log.add(.error, problem?.headline ?? error.localizedDescription, problem?.detail)
+  }
+
+  private static func seconds(since start: ContinuousClock.Instant) -> String {
+    let duration = ContinuousClock.now - start
+    let seconds =
+      Double(duration.components.seconds) + Double(duration.components.attoseconds) / 1e18
+    return String(format: "%.1fs", seconds)
   }
 
   static func delayBeforeRenewal() -> Duration {
@@ -139,6 +168,12 @@ final class SessionController {
 
   private func schedule(after delay: Duration) {
     nextRenewal?.cancel()
+    if delay == Self.retryInterval {
+      log.add(.info, "Retry in \(delay.components.seconds)s")
+    } else {
+      let time = Date().addingTimeInterval(Double(delay.components.seconds))
+      log.add(.info, "Next renewal at \(time.formatted(.dateTime.hour().minute()))")
+    }
     nextRenewal = Task { [weak self] in
       try? await Task.sleep(for: delay)
       guard !Task.isCancelled else {

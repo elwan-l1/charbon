@@ -10,6 +10,10 @@ import WebKit
 @MainActor
 final class LoginAutofill {
   private static let logger = Logger(subsystem: "ch.codevs.charbon", category: "autofill")
+  private static let names = [
+    "username": "email", "method": "“Use password” choice", "password": "password",
+    "code": "authenticator code",
+  ]
   private static let maximumTries = 2
   private static let maximumDuration: Duration = .seconds(120)
   // The page just filled stays on screen until the server answers.
@@ -80,6 +84,7 @@ final class LoginAutofill {
   private var credentials: LoginCredentials?
   private var wasPaused = false
   private var sawCodePageWithoutCode = false
+  private var isWaitingForCode = false
   private var tries: [String: Int] = [:]
   private var lastFilled: [String: ContinuousClock.Instant] = [:]
   private var task: Task<Void, Never>?
@@ -91,6 +96,11 @@ final class LoginAutofill {
     task?.cancel()
     credentials = CredentialVault.load()
     wasPaused = Self.failedRuns >= Self.maximumFailedRuns
+    if wasPaused && credentials != nil {
+      SessionLog.shared.add(
+        .warning, "Automatic login is paused",
+        "2 failed logins. Save the login again.")
+    }
     task = Task { [weak webView] in
       let deadline = ContinuousClock.now + Self.maximumDuration
       while !Task.isCancelled, ContinuousClock.now < deadline, let webView {
@@ -114,6 +124,9 @@ final class LoginAutofill {
       Self.reset()
     } else if tries["password", default: 0] > 0 {
       Self.failedRuns += 1
+      SessionLog.shared.add(
+        .warning, "The login failed after sending the password",
+        "\(Self.failedRuns) of \(Self.maximumFailedRuns) before the pause.")
     }
   }
 
@@ -165,6 +178,11 @@ final class LoginAutofill {
       Self.logger.error("Autofill failed: \(String(describing: detail), privacy: .public)")
       return nil
     }
+    if isCodeUsed, result == "skipped code", !isWaitingForCode, !code.isEmpty {
+      isWaitingForCode = true
+      SessionLog.shared.add(
+        .info, "Waiting for a new code", "The last one was used under 30s ago.")
+    }
     guard steps.contains(result) else {
       if result != lastNote {
         lastNote = result
@@ -181,6 +199,7 @@ final class LoginAutofill {
       Self.lastCode = code
     }
     Self.logger.notice("Filled the \(result, privacy: .public) page")
+    SessionLog.shared.add(.info, "Automatic login filled the \(Self.names[result] ?? result)")
     return .zero
   }
 }

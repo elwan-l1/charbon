@@ -34,8 +34,8 @@ struct RootView: View {
 
   @ViewBuilder
   private var content: some View {
-    // the settings stay reachable when there is no session
-    if model.screen == .settings {
+    // the settings and the logs stay reachable when there is no session
+    if model.screen == .settings || model.screen == .logs {
       screen
     } else {
       session
@@ -80,6 +80,7 @@ struct RootView: View {
     case .week: WeekView(model: model)
     case .month: MonthView(model: model)
     case .settings: SettingsScreen(model: model)
+    case .logs: LogsView()
     }
   }
 }
@@ -102,7 +103,7 @@ struct LoginPrompt: View {
       Button("Log in") { model.session.showLogin() }
         .buttonStyle(.blockHero)
       if canRetry {
-        Button("Try again") { Task { await model.session.renewNow() } }
+        Button("Try again") { Task { await model.session.renewNow(because: "you asked") } }
           .buttonStyle(.block)
       }
     }
@@ -128,6 +129,7 @@ struct SidebarView: View {
 
       Spacer()
       SidebarRow(screen: .settings, shortcut: "⌘,", model: model)
+      SidebarRow(screen: .logs, shortcut: "", model: model)
       sessionLine.padding(.top, 10).padding(.leading, 4)
     }
     .padding(.horizontal, 16)
