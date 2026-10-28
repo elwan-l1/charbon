@@ -4,6 +4,8 @@ All notable changes to Charbon are documented here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-28
+
 ### Added
 
 - Automatic clock in Settings. Choose a window for the start and the end of the morning and of the afternoon. Charbon clocks in when your Mac opens in a start window and clocks out when it sleeps or locks in an end window.
